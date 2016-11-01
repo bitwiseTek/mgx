@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<title>eDey Registration</title>
+	</head>
+		<body style="margin:0px; font-family:Tahoma, Geneva, sans-serif;">
+			<div style="padding:10px; background:#333; font-size:19px; color:#CCC;">
+				<a href="http://www.edey.biz"><img src="http://www.edey.biz/images/logos/logo.png" width="80" height="73" alt="eDey" style="border:none; float:left;"></a>
+				eDey Registration
+			</div>
+
+			<div style="padding:24px; font-size:13px;">
+				<span style="font-weight:bold"><?php echo $last_name; ?> <?php echo $first_name; ?></span>, 
+					thanks for joining eDey, we localize die to make sure ur business grow wela. Please store your login details for safe keep.
+				<p>
+					<div>
+						<span style="font-weight:bold">Username: </span><?php echo $username; ?>
+					</div>
+					<div>
+						<span style="font-weight:bold">Password: </span><?php echo $password; ?>
+					</div>
+				</p>
+
+				<p>
+					<div>
+						<span style="font-weight:bold">So after this, watin i go do?</span>
+					</div>
+					<div>
+						Start by learning every every from d' <a href="http://www.edey.biz/faq">eDey Guide.</a>
+					</div>
+				</p>
+			</div>
+
+			<p>eDey by Tango Energy Consults Limited.</p>
+			<p><span style="font-weight:bold">eDey Team.</span></p>
+	</body>
+</html>

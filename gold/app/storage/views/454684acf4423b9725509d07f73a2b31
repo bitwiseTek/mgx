@@ -1,0 +1,70 @@
+<?php $__env->startSection('page_title'); ?>
+	workChop Activation on eDey
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<h5>WorkChop - Activation</h5>
+				<hr class="colorgraph">
+				<?php if(is_null($data['listing'])): ?>
+					<h3>Notice</h3>
+					<div>Whoops this business listing is no available </div>
+				<?php else: ?>
+
+				<div class="pricing-tables">
+			        <div class="row">
+			          <div class="col-sm-6 col-md-6 ">
+			              <div class="plan">
+				              <div class="head"><h3>Pay Online</h3></div>  
+				              <div class="item-list">
+				                  You can make online payment on eDey using your ATM card. Use this feature subscribe your workchop and make it active for 1 year.
+				                   It supports Verve, Visa, MasterCard, and Etranzact.
+				              </div>
+				              <div class="price">
+				                <h4><span class="symbol">N</span><?php echo $data['system_slot']; ?>.00 per Year</h4>
+				              </div>
+				              	<form method=post action="https://simplepay4u.com/process.php">
+									<input type="hidden" name=action value="payment">
+									<input type="hidden" name=member value="edey">
+									<input type="hidden" name=escrow value="N">
+									<input type="hidden" name=quantity value="1">
+									<input type="hidden" name=price value="<?php echo $data['system_slot']; ?>">
+									<input type="hidden" name=customid value="<?php echo $data['listing']->id; ?>">
+									<input type="hidden" name=ureturn value="http://www.edey.biz/user/businesses/activation/success">
+									<input type="hidden" name=unotify value="http://www.edey.biz/payment/check">
+									<input type="hidden" name=ucancel value="http://www.edey.biz/user/businesses/activation/failed">
+									<input type="hidden" name=comments value="Payment Received for eDey Business Listing Subscription">
+									<input type="hidden" name=site_logo value="http://www.edey.biz/assets/images/lop.png">
+									<input type="hidden" name=freeclient value="N">
+									<input style="width:200px;height:90px;" type="image" src="https://simplepay4u.com/clients/simplepaysubscribe.gif">
+								</form>
+			           	   </div>
+			          </div>
+
+			          <div class="col-sm-6 col-md-6  ">
+			                 <div class="plan">
+			              		<div class="head"><h3>Pay by Bank Deposit</h3></div>  
+					              <div class="item-list">
+					                  Use your phone number as depositor name; after payment has been made, send us an e-mail on billing@edey.biz, 
+									  stating your teller number, amount paid, date paid, Full name.<br>
+									  <h6>Bank : Zenith Bank Nigeria</h6> 
+									  <h6>Account Name : Tango Energy Consults Limited</h6>
+									  <h6>Account Number : 1013936872</h6> 
+					              </div>
+					              <div class="price">
+					                <h4><span class="symbol">N</span><?php echo $data['system_slot']; ?>.00 per Year</h4>
+					              </div>
+			          		 </div>
+			          </div>
+			        </div>
+			      </div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

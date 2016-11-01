@@ -1,0 +1,145 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Edit Business
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Edit workChop</h5>
+			<hr class="colorgraph">
+			<?php if(Session::get('advert_message')): ?>
+				<div><?php echo Session::get('advert_message'); ?></div>
+			<?php endif; ?>
+			<?php if(!is_null($advert)): ?>
+				<div >
+					<?php echo Form::open(array('url' => '/admin/businesses/edit','files'=>true, 'method'=>'post','autocomplete' => 'off')); ?>
+					<div id="logo_container_div"> 
+						<?php if($advert->biz_logo!=null): ?>
+							<div class="container">
+								<div class="edit_image logo_upload_file image_upload_file">
+									<img src="/images/logos/<?php echo $advert->biz_logo; ?>" alt=""/><br>
+									<span class=" hidden_info image_delete">deleting...</span>
+									<a href="" class="admin_remove_image admin_edit_logo_image " ad_id="<?php echo $advert->id; ?>"><i class="icon-cancel-circled"></i> &nbsp;&nbsp;Remove</a>
+								</div>
+							</div>
+						<?php else: ?>
+							<div class="form-group">
+								<label>Business Logo:</label>
+							    <div class="input-group">
+									<input class="form-control _attachmentName" type="text" readonly="">
+								    <span class="input-group-btn">
+								        <span class="btn btn-blue btn-file ">Select Logo 
+								            <input id="attachmentName" class="attachmentName" name="biz_logo" type="file" multiple="">
+								        </span>
+								    </span>
+								</div>
+							</div>
+						<?php endif; ?>
+					</div>
+
+						<?php echo Form::hidden('ad_id',$advert->id); ?>
+						
+						<div class="form-group">
+							<?php echo Form::label('biz_name', 'Business Name:'); ?>
+							<?php echo Form::text('biz_name',$advert->biz_name,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('biz_name'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('calling_hours', 'Calling Hours:'); ?>
+							<?php echo Form::text('calling_hours',$advert->calling_hours,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('calling_hours'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('email', 'Email:'); ?>
+							<?php echo Form::text('email',$advert->email,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('email'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('phone_no', 'Phone:'); ?>
+							<?php echo Form::text('phone_no',$advert->phone_no,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('phone_no'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('website', 'Website:'); ?>
+							<?php echo Form::text('website',$advert->website,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('website'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('working_hours', 'Working Hours:'); ?>
+							<?php echo Form::text('working_hours',$advert->working_hours,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('working_hours'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('biz_location', 'Location:'); ?>
+							<?php echo Form::textarea('biz_location',$advert->biz_location,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('biz_location'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('biz_tags', 'Products/Services:'); ?>
+							<?php echo Form::textarea('biz_tags',$advert->biz_tags,array('class' => 'selectize form-control')); ?>
+							<?php echo $errors->first('biz_tags'); ?>
+						</div>
+						<div class="form-group">
+							<?php echo Form::label('biz_description', 'Business Description:'); ?>
+							<?php echo Form::textarea('biz_description',$advert->biz_description,array('class'=>'form-control')); ?>
+							<?php echo $errors->first('biz_description'); ?>
+						</div>
+
+						<div class="form-group">
+							<?php echo Form::label('biz_keywords', 'Specify your business Keywords: (This will be used to find this business) '); ?>
+							<?php echo Form::textarea('biz_keywords',$advert->biz_keywords,array('class' => 'selectize form-control')); ?>
+							<?php echo $errors->first('biz_keywords'); ?>
+						</div>
+
+						
+						<div class="row">
+							<div class="container">
+							<?php $count = 0 ;?>
+							<?php if($advert->images!=null): ?>
+								<?php foreach($advert->images as $image): ?>
+									<div class="edit_image image_upload_file">
+										<div class="image_desc label label-info"><?php echo $advert->images_name[$count]; ?></div>
+										<div id="product_thumb" class="imgLiquidFill imgLiquid">
+											<a class="venobox product_img_edit" href="/images/businesses/<?php echo $image; ?>" data-gall="images">
+												<img src="/images/businesses/<?php echo $image; ?>" />
+											</a>
+											<span class="hidden_info image_delete Message">Deleteing........</span>
+										</div>
+										<a href="" class="admin_remove_image edit_ad_image" image_id="<?php echo $advert->images_id[$count]; ?>"><i class="icon-cancel-circled"></i> &nbsp;&nbsp;Remove</a>
+									</div>
+								<?php $count++ ;?>
+								<?php endforeach; ?>
+							<?php endif; ?>
+							</div>
+						</div>
+			
+						<div>
+							<label>Product/Service Images</label>
+							<div id="image_container_div" style="width:99.5%;border:1px solid #ddd;padding:2px;"> 
+								<div id="image_upload_div"></div>
+								<?php if($count <= 8): ?>
+									<span><a href="#" id="add_more" count="1" class="btn btn-small btn-blue"><i class="add icon"></i>Add Image</a></span>
+								<?php endif; ?>
+							</div>
+						</div>
+						<br>
+
+					<div class="row">
+						<div class="col-md-3">
+							<?php echo Form::submit('Save',array('class'=>'btn btn-small btn-green btn-block')); ?>
+						</div>
+					</div>
+					<?php echo Form::close(); ?>
+				</div>
+				<?php else: ?>
+				<h3>Notice</h3>
+				<div> Opps, Seems you cant edit this Advert! <a class="label label-success" href="/admin/businesses">View Listings</a></div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

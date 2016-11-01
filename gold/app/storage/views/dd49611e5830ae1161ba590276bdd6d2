@@ -1,0 +1,72 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : User Details
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>User Collections</h5>
+			<hr class="colorgraph">
+
+			<?php if(!is_Null($user)): ?>
+				<a style="float:right;font-size:14px;" class="label label-success" href="/admin/businesses/create/<?php echo $user->id; ?>"><i class="icon-plus-circle"></i> Add workChop</a>
+				<div>
+						<h4>User Info</h4>
+					<div>
+						<div>
+							Fullname : <?php echo $user->first_name; ?> <?php echo $user->last_name; ?> (<?php echo $user->username; ?>)
+						</div>
+						<div>
+							Email : <?php echo $user->email; ?>
+						</div>
+						<div>
+							Phone : <?php echo $user->phone_no; ?>
+						</div>
+						<div>
+							Status : <?php echo ($user->status == 1) ? 'Active' : 'InActive'; ?>
+						</div>
+						<div>
+							Date Registered : <?php echo date('M d Y',strtotime($user->created_at)); ?>
+						</div>
+					</div>
+				</div>
+				 <div>
+						<h4>User workChops</h4>
+					 <?php if(!empty($user->adverts)): ?>
+						 <div>
+						 <?php foreach($user->adverts as $ad): ?>
+						 	<?php if($ad->status==1): ?>
+								<div>
+									<a class="business_list_user_header" href="/businesses/view/<?php echo e($ad->id); ?>/<?php echo e($ad->biz_name); ?>" ><?php echo e($ad->biz_name); ?></a>
+									<div class="active_ad_menu"><a href="/admin/businesses/edit/<?php echo e($ad->id); ?>" class="edit_ad" >Edit</a></div>
+								</div>
+								<hr style="border-top:1px dashed #ccc">
+							<?php else: ?>
+								<div>
+									<a class="business_list_user_header" style="color:gray" href="/businesses/view/<?php echo e($ad->id); ?>/<?php echo e($ad->biz_name); ?>" ><?php echo e($ad->biz_name); ?></a>
+									<div class="active_ad_menu"><a href="/admin/businesses/edit/<?php echo e($ad->id); ?>" class="edit_ad" >Edit </a></div>
+								</div>
+								<hr style="border-top:1px dashed #ccc">
+							<?php endif; ?>
+						<?php endforeach; ?>
+						</div>
+					<?php else: ?>
+						<h3>Notice</h3>
+						<div>No workChop for this user</div>
+					<?php endif; ?>
+				</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<span>Whoops! no such user</span>
+			<?php endif; ?>
+		   </div>
+		</div>
+	</div>
+		
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

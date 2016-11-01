@@ -1,0 +1,43 @@
+<?php $__env->startSection('page_title'); ?>
+	contact edey today!
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>Contact eDey today</h3>
+			<hr class="colorgraph">
+			<div class="">
+			<h5>Office <i class="icon-pin"></i></h5>
+				<div>Address : Frethel Plaza, Opp. Naval Flying Unit, Refinery Road, Warri, Delta State.</div>
+				<div>Phone : 08111455570 (8:30am-5pm - Mon-Fri)</div>
+				<div>email : info@edey.biz or customercare@edey.biz</div>
+			</div>
+
+			<div style="margin-top:10px;">
+				<hr class="normal-divider">
+				<h5>Events and Advertisements <i class="icon-phone"></i></h5>
+				<div>Call us to place your adverts or list your events like weddings, parties, shows etc on eDey.</div>
+				<div class="">
+					<div>Phone : 08111455570</div>
+					<div>email : marketing@edey.biz</div>
+				</div>
+			</div>
+
+			<div style="margin-top:10px;">
+				<hr class="normal-divider">
+				<h5>Meet us on social Networks</h5>
+					<a style="font-size:30px;" href="http://www.facebook.com/edeyBiz"><i class="icon-facebook-circled"></i></a>
+					<a style="font-size:30px;" href="http://www.twitter.com/edeyBiz"><i class="icon-twitter-circled"></i></a>
+			</div>
+		</div>
+
+		<div class="col-md-4 hidden-sm hidden-xs">
+			
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

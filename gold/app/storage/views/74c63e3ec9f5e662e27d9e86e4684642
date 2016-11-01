@@ -1,0 +1,52 @@
+
+	<?php if(Session::get('account_type')=='user'): ?>
+	<div class="col-md-3">
+		<div class="list-group side_bar_menu hidden-sm hidden-xs">
+		 	<a class="list-group-item <?php echo (Request::is('user/businesses*')) ? 'active': ''; ?>" href="/user/businesses"><i class="icon-suitcase"></i> &nbsp;My WorkChop</a>
+			<a class="list-group-item <?php echo (Request::is('user/following')) ? 'active': ''; ?>" href="/user/following"><i class="icon-star-1"></i> &nbsp; Bookmarks</a>
+			<a class="list-group-item <?php echo (Request::is('user/notifications*')) ? 'active': ''; ?>" href="/user/notifications"><i class="icon-chat"></i> &nbsp; Notifications</a>
+			<a class="list-group-item <?php echo (Request::is('user/settings')) ? 'active': ''; ?>" href="/user/settings"><i class="icon-cog-alt"></i> &nbsp; Settings</a>
+			<a class="list-group-item <?php echo (Request::is('log-out')) ? 'active': ''; ?>" href="/log-out"><i class="icon-logout-1"></i> &nbsp; Log-Out</a>
+		</div>
+	</div>
+	<?php elseif(Session::get('account_type')=='admin'): ?>
+
+		<?php if(Session::get('account_role')=='geek'): ?>
+		<div class="col-md-3">
+			<div class="list-group side_bar_menu hidden-sm hidden-xs">
+				<a class="list-group-item <?php echo (Request::is('admin/complains*')) ? 'active': ''; ?>" href="/admin/complains"><i class="icon-comment"></i> &nbsp; Complains</a>
+				<a class="list-group-item <?php echo (Request::is('admin/users*')) ? 'active': ''; ?>" href="/admin/users"><i class="icon-users-1"></i> &nbsp; Users</a>
+				<a class="list-group-item <?php echo (Request::is('admin/businesses*')) ? 'active': ''; ?>" href="/admin/businesses"><i class="icon-suitcase"></i> &nbsp; Business Listings</a>
+				<a class="list-group-item <?php echo (Request::is('admin/payment*')) ? 'active': ''; ?>" href="/admin/payment"><i class="icon-money"></i> &nbsp; Payment</a>
+				<a class="list-group-item <?php echo (Request::is('admin/settings')) ? 'active': ''; ?>" href="/admin/settings"><i class="icon-cog-alt"></i> &nbsp; Settings</a>
+				<a class="list-group-item <?php echo (Request::is('admin/maintenance')) ? 'active': ''; ?>" href="/admin/maintenance"><i class="icon-cd"></i> &nbsp; Maintenance</a>
+				<a class="list-group-item <?php echo (Request::is('log-out')) ? 'active': ''; ?>" href="/log-out"><i class="icon-logout-1"></i> &nbsp; Log-Out</a>
+			</div>
+		</div>
+		<?php elseif(Session::get('account_role')=='crm'): ?>
+		<div class="col-md-3">
+			<div class="list-group side_bar_menu hidden-sm hidden-xs">
+				<a class="list-group-item <?php echo (Request::is('admin/subscriptions*')) ? 'active': ''; ?>" href="/admin/subscriptions"><i class="icon-users"></i> &nbsp; Subscriptions</a>
+				<a class="list-group-item <?php echo (Request::is('admin/complains*')) ? 'active': ''; ?>" href="/admin/complains"><i class="icon-chat-1"></i> &nbsp; Complains</a>
+				<a class="list-group-item <?php echo (Request::is('admin/leads*')) ? 'active': ''; ?>" href="/admin/leads"><i class="icon-road"></i> &nbsp; Leads</a>
+				<a class="list-group-item <?php echo (Request::is('admin/ad-upload*')) ? 'active': ''; ?>" href="/admin/ad-upload"><i class="icon-suitcase"></i> &nbsp; Upload workChop</a>
+				<a class="list-group-item <?php echo (Request::is('admin/mail*')) ? 'active': ''; ?>" href="/admin/mail"><i class="icon-mail"></i> &nbsp; Mails</a>
+				<a class="list-group-item <?php echo (Request::is('admin/sms*')) ? 'active': ''; ?>" href="/admin/sms"><i class="icon-comment"></i> &nbsp; SMS</a>
+				<a class="list-group-item <?php echo (Request::is('admin/settings')) ? 'active': ''; ?>" href="/admin/settings"><i class="icon-cog-alt"></i> &nbsp; Settings</a>
+				<a class="list-group-item <?php echo (Request::is('log-out')) ? 'active': ''; ?>" href="/log-out"><i class="icon-logout-1"></i> &nbsp; Log-Out</a>
+			</div>
+		</div>
+		<?php elseif(Session::get('account_role')=='mgt'): ?>
+		<div class="col-md-3">
+			<div class="list-group side_bar_menu hidden-sm hidden-xs">
+				<a class="list-group-item <?php echo (Request::is('admin/overview')) ? 'active': ''; ?>" href="/admin/overview"><i class="icon-layout"></i> &nbsp; Board</a>
+				<a class="list-group-item <?php echo (Request::is('admin/accounts*')) ? 'active': ''; ?>" href="/admin/accounts"><i class="icon-users-1"></i> &nbsp; Accounts</a>
+				<a class="list-group-item <?php echo (Request::is('admin/reports')) ? 'active': ''; ?>" href="/admin/reports"><i class="icon-chart-bar-1"></i> &nbsp; Reports</a>
+				<a class="list-group-item <?php echo (Request::is('admin/logs*')) ? 'active': ''; ?>" href="/admin/logs"><i class="icon-edit"></i> &nbsp; Logs</a>
+				<a class="list-group-item <?php echo (Request::is('admin/config*')) ? 'active': ''; ?>" href="/admin/config"><i class="icon-sitemap"></i> &nbsp;Config</a>
+				<a class="list-group-item <?php echo (Request::is('admin/settings')) ? 'active': ''; ?>" href="/admin/settings"><i class="icon-cog-alt"></i> &nbsp; Settings</a>
+				<a class="list-group-item <?php echo (Request::is('log-out')) ? 'active': ''; ?>" href="/log-out"><i class="icon-logout-1"></i> &nbsp; Log-Out</a>
+			</div>
+		</div>
+		<?php endif; ?>
+	<?php endif; ?>

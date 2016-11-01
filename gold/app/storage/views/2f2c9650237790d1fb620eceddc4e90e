@@ -1,0 +1,58 @@
+<?php $__env->startSection('page_title'); ?>
+	Member account settings
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>	
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<h5>Settings</h5>
+				<hr class="colorgraph">
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Full Name: <i class="icon-user"></i></label>
+									<div class="edit_full_name" mode="name"><?php echo e(Session::get('last_name').' '. Session::get('first_name')); ?></div>
+									<span class="edit_full_name_message"></span>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row"> 
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Email: <i class="icon-mail"></i></label>
+									<div class="edit_email" mode="email"><?php echo $user['email']; ?></div>
+									<span class="edit_email_message"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Phone: <i class="icon-phone"></i></label>
+									<div class="edit_phone" mode="phone"><?php echo $user['phone_no']; ?></div>
+									<span class="edit_phone_message"></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3">
+								<div class="form-group">
+									<label>Password: <i class="icon-key"></i></label>
+									<div class="edit_password" >**********</div>
+									<span class="edit_password_message"></span>
+								</div>
+							</div>
+						</div>
+
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

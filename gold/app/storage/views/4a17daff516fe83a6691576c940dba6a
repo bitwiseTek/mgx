@@ -1,0 +1,45 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey Logs
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Logs</h5>
+			<hr class="colorgraph"/>
+
+		    <div class="row">
+				<div class="col-md-10">
+					 <input placeholder="Enter name" name="search" id="log_admin_search" type="text" class="form-control">      
+			    </div>
+			    <div class="col-md-2">
+			    	 <button class="btn btn-small btn-blue" id="log_search" type="button">Logs</button>
+			    </div>
+			</div>
+			<br>
+
+			<?php if(!empty($logs)): ?>
+				<div id="search_result">
+				<?php foreach($logs as $log): ?>
+					<?php if($log->activity_type=='Slot Allocation'): ?>
+				      <div>- <?php echo $log->activity; ?> on <?php echo date('d-m-Y h:i a',strtotime($log->done_at)); ?><a style="float:right" class="label label-success"href="/businesses/view/<?php echo $log->ad_id; ?>">View</a></div>
+				      <hr style="border-top:1px dashed #ccc">
+					<?php else: ?>
+				      <div>- <?php echo $log->activity; ?> on <?php echo date('d-m-Y h:i a',strtotime($log->done_at)); ?></div>
+				      <hr style="border-top:1px dashed #ccc">
+					<?php endif; ?>
+				<?php endforeach; ?>
+				</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>There are no Logs</div>
+			<?php endif; ?>
+			<div id="search_message" ></div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

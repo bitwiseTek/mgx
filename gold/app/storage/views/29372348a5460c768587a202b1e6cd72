@@ -1,0 +1,74 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Support Desk
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>	
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Viewing Complain</h5>
+			<hr class="colorgraph">
+			<?php if(!is_null($complain)): ?>
+			<div>
+				<h5>User Info</h5>
+				<div>
+					<div>Fullname : <?php echo $complain->last_name; ?> <?php echo $complain->first_name; ?></div>
+					<div>email : <?php echo $complain->email; ?></div>
+					<div>Phone : <?php echo $complain->phone_no; ?></div>
+					<div>Posted : <?php echo e(date('d M Y h:i a',strtotime($complain->complained_at))); ?></div>
+				</div>
+			</div>
+			<div>
+				<hr class="normal-divider">
+				<h5>Complain</h5>
+				<div>
+				  <div class="form-group">
+				    <textarea class="form-control"><?php echo e($complain->complain); ?></textarea>
+				  </div>
+				  
+				</div>
+			</div>
+
+			<div class="complain_panel">
+				<hr class="normal-divider">
+				<h5>Action</h5>
+				<div>
+					<div>
+						<div class="col-md-9">
+							<select name="status" id="status" class="form-control">
+								<option value="done">Done</option>
+							</select>
+						</div>	
+						<div class="col-md-3">
+							<?php echo Form::button('Mark',array('complain_id'=>$complain->id,'class'=>'complain_change_status btn btn-small btn-green')); ?>
+						</div>		
+					</div>
+					<div class="move_complain_form">
+						<div class="col-md-9">
+							<select name="forward" id="forward" class="form-control">
+								<?php if($complain->complain_type == 'crm'): ?>
+									<option value="geek">Geeks</option>
+								<?php elseif($complain->complain_type == 'geek'): ?>
+									<option value="crm">crm</option>
+								<?php endif; ?>
+							</select>
+						</div>
+						<div class="col-md-3">
+							<?php echo Form::button('Move',array('complain_id'=>$complain->id,'class'=>'move_complain btn btn-small btn-blue')); ?>
+						</div>		
+					</div>
+				</div>
+			</div>
+			<div class="complain_message"></div>
+
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>This complain is not available!</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,107 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : List Business
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Add workChop for <?php echo $user->first_name; ?> <?php echo $user->last_name; ?></h5>
+			<hr class="colorgraph">
+			<?php if(Session::get('advert_message')): ?>
+					<?php echo Session::get('advert_message'); ?>
+			<?php endif; ?>
+	
+			<?php if(!is_null($user)): ?>
+				<div class="general">
+					<?php echo Form::open(array('url' => '/admin/businesses/create','files'=>true, 'method'=>'post','autocomplete' => 'off')); ?>
+							<?php echo Form::hidden('user_id', $user->id); ?>
+
+							<div class="form-group">
+								<label>Business Logo:</label>
+							    <div class="input-group">
+									<input class="form-control _attachmentName" type="text" readonly="">
+								    <span class="input-group-btn">
+								        <span class="btn btn-blue btn-file ">Select Logo 
+								            <input id="attachmentName" class="attachmentName" name="biz_logo" type="file" multiple="">
+								        </span>
+								    </span>
+								</div>
+							    <?php echo $errors->first('biz_logo'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('biz_name', 'Business name:'); ?>
+								<?php echo Form::text('biz_name','',array('placeholder'=>'Business Name','class'=>'form-control')); ?>
+								<?php echo $errors->first('biz_name'); ?>	
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('calling_hours', 'Calling Hours:'); ?>
+								<?php echo Form::text('calling_hours','',array('placeholder'=>'Calling Hours')); ?>
+								<?php echo $errors->first('calling_hours'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('email', 'Email:'); ?>
+								<?php echo Form::text('email','',array('placeholder'=>'Business Email','class'=>'form-control')); ?>
+								<?php echo $errors->first('email'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('phone_no', 'Phone:'); ?>
+								<?php echo Form::text('phone_no','',array('placeholder'=>'Business Phone #','class'=>'form-control')); ?>
+								<?php echo $errors->first('phone_no'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('website', 'Website:'); ?>
+								<?php echo Form::text('website','',array('placeholder'=>'Website','class'=>'form-control')); ?>
+								<?php echo $errors->first('website'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('working_hours', 'Working Hours:'); ?>
+								<?php echo Form::text('working_hours','',array('placeholder'=>'Working Hours','class'=>'form-control')); ?>
+								<?php echo $errors->first('working_hours'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('biz_location', 'Location:'); ?>
+								<?php echo Form::textarea('biz_location','',array('placeholder'=>'Location','class'=>'form-control')); ?>
+								<?php echo $errors->first('biz_location'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('biz_tags', 'Products/Services:'); ?>
+								<?php echo Form::textarea('biz_tags','',array('placeholder'=>'Products/Services','class' => 'selectize form-control')); ?>
+								<?php echo $errors->first('biz_tags'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('biz_description', 'Business Description:'); ?>
+								<?php echo Form::textarea('biz_description','',array('placeholder'=>'Description','class'=>'form-control')); ?>
+								<?php echo $errors->first('biz_description'); ?>
+							</div>
+							<div class="form-group">
+								<?php echo Form::label('biz_keywords', 'Specify your business Keywords: (This will be used to find your business)'); ?>
+								<?php echo Form::textarea('biz_keywords','',array('placeholder'=>'Enter keywords for this business','class' => 'selectize form-control')); ?>
+								<?php echo $errors->first('biz_keywords'); ?>
+							</div>
+					    
+							<div>
+								<label>Product and Service Photos</label>
+								<div id="image_container_div" style="min-height:10px;width:99.5%;border:1px solid #dddddd;padding:2px;border-radius:3px;"> 
+									<div id="image_upload_div"></div>
+									<span><a href="#" id="add_more" count="1" class="btn btn-small btn-blue"><i class="add icon"></i>Add Image</a></span>
+								</div><br>
+							</div>
+						<div class="row">
+							<div class="col-md-3">
+								<?php echo Form::submit('Create',array('class'=>'btn btn-green btn-small btn-block')); ?>
+							</div>
+						</div>
+				</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>This is not a valid user.</div>
+			<?php endif; ?>	
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

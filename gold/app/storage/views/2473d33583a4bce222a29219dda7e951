@@ -1,0 +1,42 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Broadcast
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<h4>Notifications</h4>
+				<hr class="colorgraph">
+			<?php if(!is_null($ad)): ?>
+				<div>
+					Broadcast message as : <?php echo $ad->biz_name; ?>
+					<?php echo Form::open(array('url' => '/user/businesses/notify', 'method'=>'post','autocomplete' => 'off')); ?>
+						<div class="form-group">
+							<label>Title:</label>
+							<?php echo Form::text('notification_title','',array('class'=>'form-control')); ?>
+						</div>
+						<div class="form-group">
+							<label>Message:</label>
+							<?php echo Form::textarea('notification','',array('class'=>'form-control')); ?>
+						</div>
+						<?php echo Form::hidden('ad_id',$ad->id); ?>
+					<div class="row">
+						<div class="col-md-3">
+							<?php echo Form::submit('Broadcast',array('class'=>'btn btn-small btn-green form-control')); ?>
+						</div>
+					</div>
+					<?php echo Form::close(); ?>
+				</div>
+			<?php else: ?>
+				<div class="">
+					<div class="">Opps! this advert is not active or is set to hidden mode.</div>
+				</div>
+			<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

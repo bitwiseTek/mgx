@@ -1,0 +1,42 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey: Reporting
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>System Reports</h5>
+			<hr class="colorgraph">
+			<div class="row">
+
+			<input type="text" id="date">
+				<div class="col-md-5">
+					<div class="form-group">			
+						<label>From:</label>
+						<?php echo Form::text('from','',array( 'id' =>'datetimepicker','class'=>'form-control')); ?>
+					</div>
+				</div>
+				<div class="col-md-5">
+					<div class="form-group">
+						<label>To:</label>
+						<?php echo Form::text('to','',array( 'id' =>'to','class'=>'form-control')); ?>
+					</div>
+				</div>
+				<div class="col-md-2">
+					<div class="form-group">
+						<label>&nbsp;</label>
+		 				<input type="button" id="reports" value="Report" class="btn btn-small btn blue" />
+		 			</div>
+				</div>
+			</div>
+			 <div id="reportDiv"></div>
+			 <div id="search_message" ></div>
+		</div>
+	</div>
+</div>
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

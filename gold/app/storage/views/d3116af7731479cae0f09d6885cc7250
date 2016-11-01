@@ -1,0 +1,40 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Users Business Listings
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>workChops Panel</h5>
+			<?php if(Session::get('admin_advert_message')): ?>
+				<div><?php echo Session::get('admin_advert_message'); ?></div>
+			<?php endif; ?>
+			<hr class="colorgraph">
+		<?php if(!is_Null($adverts)): ?>
+			<div>
+			<?php foreach($adverts as $advert): ?>
+			  	<div>
+				      <a href="/businesses/view/<?php echo $advert->id; ?>" class="business_list_user_header"><?php echo e($advert->biz_name); ?></a>
+				      <div>
+						<div><?php echo e($advert->phone_no); ?></div> 
+						<div><?php echo e($advert->biz_location); ?><a href="/admin/businesses/edit/<?php echo $advert->id; ?>"> - Edit</a></div> 
+				    </div>
+		  		</div>
+		  		<hr style="border-top:1px dashed #ccc">
+			<?php endforeach; ?>
+			</div>
+		<?php else: ?>
+			<h3>Notice</h3>
+			<div>
+				There are no Business Listings.
+			</div>
+		<?php endif; ?>
+		</div>
+	</div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

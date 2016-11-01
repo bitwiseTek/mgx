@@ -1,0 +1,12 @@
+<?php $__env->startSection('page_title'); ?>
+	registeration status
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container main_content">
+		
+		<h4>Notice</h4>
+		 <?php echo Session::get('register_message'); ?> <a class="label label-success" href="/login">Login</a> to continue. 
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

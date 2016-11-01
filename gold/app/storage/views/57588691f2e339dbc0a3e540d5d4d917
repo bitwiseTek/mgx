@@ -1,0 +1,37 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Staff Logs
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Staff Logs</h5>
+			<hr class="colorgraph"/>
+			<?php if(!is_null($logs)): ?>
+			<div>
+				<?php foreach($logs as $log): ?>
+					<?php if($log->activity_type=='Slot Allocation'): ?>
+						<div>
+							<div>- <?php echo $log->activity; ?> on <?php echo date('d-m-Y h:i a',strtotime($log->done_at)); ?> <a class="label label-success" href="/adverts/view/<?php echo e($log->ad_id); ?>" style="float:right">View</a></div>
+							<hr style="border-top:1px dashed #ccc">
+						</div>
+					<?php else: ?>
+						<div>
+							<div>- <?php echo $log->activity; ?> on <?php echo date('d-m-Y h:i a',strtotime($log->done_at)); ?></div>
+							<hr style="border-top:1px dashed #ccc">
+						</div>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>No log record for this user</div>
+			<?php endif; ?>
+		</div>
+	</div>		
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

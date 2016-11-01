@@ -1,0 +1,26 @@
+<div class="container other_search">
+  <div class="row">
+    <form action='/search/businesses' method="get" >
+        <div class="col-md-6">
+          <div class="form-group">
+              <div style="width:100%;" class="input-group ">
+                  <label style="width:80px;" for="for" class="input-group-addon label-success search_label">I need</label>
+                  <input type="text" class="form-control" value="<?php echo Input::get('for'); ?>" name="for" id="for" placeholder="Shoes, Cloths, Barbers, Make-Over stylist, Mechanic">
+               </div>
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <div class="form-group">
+              <div style="width:100%;" class="input-group ">
+                <label style="width:80px;" class="input-group-addon label-success search_label" for="location">around</label>
+                <input class="form-control" id="location" value="<?php echo Input::get('location'); ?>" type="text" name="location" placeholder="Ekpan, Udu, Effurun, Ughelli, Enerhe">
+              </div>
+          </div>
+        </div>              
+        <div class="col-md-1">
+          <button type="submit" class="btn btn-block btn-small btn-gray"><i style="font-size:21px;" class="icon-search-1"></i></button>
+        </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<?php $__env->startSection('page_title'); ?>
+	Register
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container main_content">
+	<div class="row">
+	    <div class="col-md-7">
+			<h3>Register your account</h3>
+			<hr class="divider">
+			<?php echo Form::open(array('url' => '/register', 'method'=>'post','autocomplete' => 'off','role'=>'form')); ?>
+			<div class="form-group">
+						<?php echo Form::label('username', 'UserName:',array('class'=>'label')); ?>
+						<?php echo Form::text('username','',array('placeholder'=>'Username','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('username'); ?>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('last_name', 'Last Name:',array('class'=>'label')); ?>
+						<?php echo Form::text('last_name','',array('placeholder'=>'Enter Last Name','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('last_name'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('first_name', 'First Name:',array('class'=>'label')); ?>
+						<?php echo Form::text('first_name','',array('placeholder'=>'Enter First Name','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('first_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('email', 'Email:',array('class'=>'label')); ?>
+						<?php echo Form::text('email','',array('placeholder'=>'example@email.com','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('email'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('phone_no', 'Mobile:',array('class'=>'label')); ?>
+						<?php echo Form::text('phone_no','',array('placeholder'=>'phone number','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('phone_no'); ?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('password', 'Password:',array('class'=>'label')); ?>
+						<?php echo Form::password('password',array('placeholder'=>'password','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('password'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('password_confirmation', 'Retype Password:',array('class'=>'label')); ?>
+						<?php echo Form::password('password_confirmation',array('placeholder'=>'password','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('password_confirmation'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					 By clicking the <strong class="label label-success">register</strong> button, you agree to the <a href="/terms-and-conditions">terms and conditions</a> of Gold Exchange.
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-4">
+					<?php echo Form::submit('Register',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+				</div>
+			</div>
+			<?php echo Form::close(); ?>
+			<hr class="divider">
+		</div>
+
+		<div class="col-md-5 hidden-sm hidden-xs">
+
+
+		</div>
+	</div>
+
+</div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

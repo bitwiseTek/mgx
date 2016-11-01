@@ -1,0 +1,7 @@
+<?php if($paginator->getLastPage() > 1): ?>
+<?php $previousPage = ($paginator->getCurrentPage() > 1) ? $paginator->getCurrentPage() - 1 : 1; ?>  
+<ul class="pager">  
+  <li class="previous <?php echo ($paginator->getCurrentPage() == 1) ? ' hidden_info' : ''; ?>"><a href="<?php echo $paginator->getUrl($previousPage); ?>">&laquo; Prev</a></li>
+  <li class="next <?php echo ($paginator->getCurrentPage() == $paginator->getLastPage()) ? ' hidden_info' : ''; ?>"><a href="<?php echo $paginator->getUrl($paginator->getCurrentPage()+1); ?>">Next &raquo;</a></li>
+</ul>  
+<?php endif; ?>

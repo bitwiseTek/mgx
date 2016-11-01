@@ -1,0 +1,12 @@
+<?php $__env->startSection('page_title'); ?>
+	Terms and Conditions
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container">
+	<div class="row">
+		<h2 class="ui small header">Terms and Condition of Service</h2>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

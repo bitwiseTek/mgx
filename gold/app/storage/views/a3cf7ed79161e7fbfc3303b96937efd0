@@ -1,0 +1,52 @@
+<?php $__env->startSection('page_title'); ?>
+  <?php echo e(($lists->getTotal()!=0 ? $lists->searched_for : 'sorry o!')); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+    <?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+    <div class="container">
+      <div id="top_banner">
+         <img src="/assets/images/banner.jpg" height="90" width="868">
+      </div>
+    </div>
+
+      <div class="container marketing">
+        <div class="row">
+          <div class="col-md-9">
+          <?php if($lists->getTotal()==0): ?>
+             <h3>Notice</h3>
+             <div>we no find that one O, check back again.</div> 
+          <?php else: ?>
+            <div id="tipue_search_content" class="search_result" style="display:block;margin-bottom:100px">
+              <div id="tipue_search_results_count"><?php echo $lists->getTotal(); ?> workChops get watin u want, Gbam!</div><br>
+              <?php foreach($lists as $search): ?>
+                <div style="border-bottom:1px dashed #ccc;clear:both;padding-bottom:10px">
+                  <div style="float:left">
+                    <div class="tipue_search_content_title">
+                        <a href="<?php echo '/businesses/view/'.$search->id.'/'.$search->biz_name; ?>"><?php echo ucwords(str_limit($search->biz_name,50)); ?></a>                      
+                    </div>
+                    <div class="tipue_search_content_url">
+                        <a href="<?php echo '/businesses/view/'.$search->id.'/'.$search->biz_name; ?>"><?php echo str_limit($search->biz_location,70); ?></a>
+                    </div>
+                    <div class="tipue_search_content_text">
+                        <?php echo str_limit($search->biz_description,70); ?>
+                    </div>
+                    <div class='workChop_rating' data-rating='<?php echo (is_null($search->rating) ? 0 : $search->rating); ?>'></div>
+                  </div>
+                  <div class="float:right">
+                    <a href="<?php echo '/businesses/view/'.$search->id.'/'.$search->biz_name; ?>" style="margin-top:10%" class="pull-right label label-info">View workChop</a>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+            </div>
+            <?php echo $lists->links(); ?>
+          <?php endif; ?>
+          </div><br><br>
+          <div class="hidden-xs col-md-3">
+              <?php echo $__env->make('templates.include_adverts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+          </div>
+        </div>
+      </div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

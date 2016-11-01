@@ -1,0 +1,59 @@
+<?php $__env->startSection('page_title'); ?>
+	System Configuration
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<?php if(Session::get('editInfo_message')): ?>
+				<div><?php echo Session::get('editInfo_message'); ?></div>
+			<?php endif; ?>
+			<h3>Banks Settings</h3>
+			<hr class="divider"/>
+
+
+			<br><br>
+			<div class="row">
+				<?php if(Session::get('editEwallets_message')): ?>
+					<div><?php echo Session::get('editEwallets_message'); ?></div>
+				<?php endif; ?>
+					<h3>eCurrency Settings</h3>
+					<hr class="divider"/>
+					<?php echo Form::open(array('url' => '/users/settings/e-wallets', 'method'=>'post','role'=>'form')); ?>
+					<?php foreach($data as $currency): ?>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group">
+									Currency: <?php echo $currency->currency_name; ?>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<?php echo Form::label('buy_value', 'Buy Value:'); ?>
+									<?php echo Form::text('buy_value',$currency->buy_value,array('placeholder'=>'Enter Perfect Money Acct','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('buy_value'); ?>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+									<?php echo Form::label('sell_value', 'Sell Value:'); ?>
+									<?php echo Form::text('sell_value',$currency->sell_value,array('placeholder'=>'Enter Perfect Money Acct','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('sell_value'); ?>
+								</div>
+							</div>
+						</div>
+					<?php endforeach; ?>
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Update',array('class'=>'btn btn-blue btn-block btn-small','name'=>'edit_info')); ?>
+							</div>
+						</div>
+					<?php echo Form::close(); ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

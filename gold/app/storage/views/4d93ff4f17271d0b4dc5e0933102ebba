@@ -1,0 +1,33 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey - System Config
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Change Slot Price</h5>
+			<hr class="colorgraph">
+			 <?php echo Form::open(array('url' => '/admin/config', 'method'=>'post')); ?>
+				<div class="form-group">
+					<?php echo Form::label('slot_price', 'Price:'); ?>
+					<?php echo Form::text('slot_price',$slot,'',array('class'=>'form-control')); ?>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+					 	<?php echo Form::submit('Change',array('class'=>'btn btn-blue btn-small')); ?>
+					</div>
+					<div class="col-md-9">
+						<?php if(Session::get('config_message')): ?>
+							<div><?php echo e(Session::get('config_message')); ?></div>
+						<?php endif; ?>
+					</div>
+				</div>
+			 <?php echo Form::close(); ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

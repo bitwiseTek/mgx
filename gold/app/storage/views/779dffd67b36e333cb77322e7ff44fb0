@@ -1,0 +1,92 @@
+<?php $__env->startSection('page_title'); ?>
+	Frequently Asked Question
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="col-md-10">
+		<h3>FAQ - Frequently asked questions</h3>
+		<hr class="colorgraph">
+	      <div>
+            <h5>Na watin be workChop?</h5>
+      		<ul>
+      			<li>workChop na your business wey you don list on eDey.</li>
+      			<li>You fit had any number of workChops.</li>
+      			<li>You even fit edit the once you done add before.</li>
+      			<li>You fit hide or show workChop any time you like</li>
+      		</ul>
+	      </div>
+
+	      <div>
+         	  <h5>I nor sabi computer how i go take put my business</h5>
+	          <ul>
+	         	 <li>Contact us, we go send our marketers to you with our forms.</li>
+	          </ul>
+	      </div>
+
+        <div>
+          <h5>I wan register on eDey</h5>
+	          <ul>
+	          	<li>Step 1 Click register for top, this go carry you land for our registration page.</li>
+				<li>Step 2 Enter your correct details.</li>
+				<li>Step 3 Hama the register button.</li>
+	          </ul>
+        </div>
+
+	      <div>
+            <h5>I don register, how i go login</h5>
+      		<ul>
+	          	<li>Step 1 Click Login for top, this go carry you land for our login page.</li>
+				<li>Step 2 Enter your username and password.</li>
+				<li>Step 3 Hama the login in button.</li>
+	        </ul>
+	      </div>
+
+	      <div>
+         	<h5>I don log in, how i go put workChop</h5>
+      		<ul>
+				<li>Step 1 Click add workChop - The green button.</li>
+				<li>Step 2 Enter your workChop details, make sure say everything correct!</li>
+				<li>Step 3 Wen you finish, click the create button.</li>
+	        </ul>
+	      </div>
+				       
+	      <div>
+            <h5>My workChop don enter, but how I go activate am </h5>
+      		<ul>
+				<li>Step 1 Click the green activate button.</li>
+				<li>Step 2 Click the simplePay subscribe button if you wan pay online or pay to our account.</li>
+				<li>Step 3 If na online payment, click the interswitch button</li>
+	        </ul>
+	      </div>
+
+	      <div>
+	        <h5>Ok, so na how long one workChop dey last </h5>
+      		<ul>
+         	 	<li>Every workChop wey u add go last for 1 year each.</li>
+          	</ul>
+	      </div>
+
+	      <div>
+	          <h5>I fit edit my business details after i done add am?</h5>
+	          	<ul>
+	          		<li>Yes! After you login in for your workchop, click edit for the business you wan edit.</li>
+	          	</ul>
+	      </div>
+
+	       <div>
+	          <h5>Watin notification dey do?</h5>
+	          	<ul>
+	          		<li>If you bookmark any workChop, wen the workChop get new products dey fit send you notification.</li>
+	          	</ul>
+	      </div>
+	        
+	 </div>
+	 <div class="col-md-2">
+	 	
+	 </div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

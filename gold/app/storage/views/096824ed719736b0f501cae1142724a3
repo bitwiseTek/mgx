@@ -1,0 +1,151 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : d' Localized Business and Events Listing Directory.
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+	    <div id="myCarousel" class="hidden-xs carousel carousel-fade slide container" data-ride="carousel">
+	      <div class="carousel-inner">
+	        <div class="item active">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head5.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+           	  		<h4>I need to Do my hair O!</h4>
+              		<p>na simple tin o, you can find male, female or unisex saloons close to you. You fit even check for home services sef, them go waka come find you.</p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head2.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>I wan change my phone sef!</h4>
+	              <p>edey na d correct place to start, just search for phones and you go see plenty places wey near you to buy that ogbonge phone wey you want. </p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head3.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>Chai! me sef don list my workChop</h4>
+	              <p>Come edey make you list your business, services and hand-work wey you dey do make plenty people take easily find you. You go see how to business to grow sharp sharp, no waist time o.</p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head1.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>I need new cloths and shoes for my waka!</h4>
+	              <p>Come edey make u see all the correct boutiques wey dey town, weda na shoes, cloths, perfume, watches etc you go find am for here sharp sharp!</p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head4.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>I get my wedding Look Here</h4>
+	              <p>To look special sister na correct tin o. on eDey you go find many places wey go give you that sweet look for that ocassion wey you wan go. Just check dem out now.</p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head6.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>Find Mechanics on eDey</h4>
+	              <p>dat car problem go end today! find correct mechanics on eDey wey go fix your car problem now now. No talk say mecahnics no dey bcos dem dey for eDey.</p>
+	            </div>
+	        </div>
+	        <div class="item">
+	          	<div class="ca_image">
+	          		<img src="/assets/images/head8.jpg" height="132" width="132">
+	          	</div>
+	            <div class="carousel-caption">
+	              <h4>I list my comedy shows</h4>
+	              <p>For me as a comedian and MC, i no waist time o, i quickly list on eDey and since then i dey make many more people happy and laugh as na my job be that !</p>
+	            </div>
+	        </div>
+	      </div>
+	    </div>
+
+	    <div id="home_search" class="container ">
+	      <div class="row">
+	          <form action='/search/businesses' method="get" >
+	              <div class="col-md-6">
+	                <div class="form-group">
+	                    <div style="width:100%;" class="input-group ">
+	                        <label style="width:80px;" for="for" class="input-group-addon label-success search_label">I need</label>
+	                        <input type="text" class="form-control tipue_search_input" name="for" id="for" placeholder="Shoes, Cloths, Barbers, Make-Over stylist, Mechanic">
+	                     </div>
+	                </div>
+	              </div>
+
+	              <div class="col-md-5">
+	                <div class="form-group">
+	                    <div style="width:100%;" class="input-group ">
+	                      <label style="width:80px;" class="input-group-addon label-success search_label" for="location">around</label>
+	                      <input class="form-control tipue_search_input" id="location" type="text" name="location" placeholder="Ekpan, Udu, Effurun, Ughelli, Enerhe">
+	                    </div>
+	                </div>
+	              </div>              
+	              <div class="col-md-1">
+	                <button type="submit" class="btn btn-block btn-small btn-gray"><i style="font-size:21px;" class="icon-search-1"></i></button>
+	              </div>
+	          </form>
+	      </div>
+	      <br>
+	      <div class="row">
+	      	<div class="col-md-12">
+				<div class="slogan_big">#1</div> <br>
+				<div class="slogan_mid">Localized Services, Products and Events Directory.</div>
+				<div class="slogan_small">You get Service, Product or handwork wey u dey offer, then List am Today! </div>
+			</div>
+	      </div>
+	    </div>
+	    <br> <br>
+	   
+	    <div class="container">
+	    	<div style="border-top:1px dashed #5CB85C"></div>
+	    	<div class="row">
+	    	<div class="col-md-5" style="text-align:center" >
+	    		<ul class="rslides" >
+	    			<?php foreach($data['events'] as $event): ?>
+		              	<li>
+		                  <div class="tipue_search_content_title"><a href="<?php echo '/events/view/'.$event->id.'/'.$event->event_name; ?>"><?php echo str_limit(ucwords($event->event_name),50); ?> </a></div>
+		                  <div class="tipue_search_content_url"><a href="<?php echo '/events/view/'.$event->id.'/'.$event->event_name; ?>"><?php echo str_limit($event->event_address,50); ?></a></div>
+		                  <div><?php echo str_limit($event->event_description,50); ?></div>
+		                </li>
+		              <?php endforeach; ?>					
+			    </ul>
+			    - <a style="text-decoration:underline;color:#5CB85C;font-weight:bold" class="text-muted" href="/events"> View all Events</a>
+		    </div>
+		    <div class="col-md-1 hidden-xs hidden-sm"><br><div style="border-right:1px dashed #5CB85C;min-height:100px;"></div></div>
+		    <div class="col-md-5" style="text-align:center"  >
+	    		<ul class="rslides" >
+		              <?php foreach($data['workChops'] as $workChop): ?>
+		              	<li>
+		                  <div class="tipue_search_content_title"><a href="<?php echo '/businesses/view/'.$workChop->id.'/'.$workChop->biz_name; ?>"><?php echo str_limit(ucwords($workChop->biz_name),50); ?> </a></div>
+		                  <div class="tipue_search_content_url"><a href="<?php echo '/businesses/view/'.$workChop->id.'/'.$workChop->biz_name; ?>"><?php echo str_limit($workChop->biz_location,50); ?></a></div>
+		                  <div><?php echo str_limit($workChop->biz_description,50); ?></div>
+		                </li>
+		              <?php endforeach; ?>
+			    </ul>
+			    - <a style="text-decoration:underline;color:#5CB85C;font-weight:bold" class="text-muted" href="/businesses/categories"> View workChops</a>
+		    </div>
+		    </div>
+		    
+	    </div>
+	    <br><br>
+
+	    <div class="container hidden-xs" >
+	    	<div class="home_banner" style="margin-left:7%"><img src="/assets/images/emicon.gif" height="90" width="728"></div>
+	    </div>
+	    
+<?php $__env->stopSection(); ?>
+   
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

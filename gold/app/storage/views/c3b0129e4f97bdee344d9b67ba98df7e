@@ -1,0 +1,41 @@
+<?php $__env->startSection('page_title'); ?>
+	System Transactions
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h3>Transactions Management</h3>
+			<hr class="divider"/>
+			<?php if(!empty($data)): ?>
+				<table>
+					<tr>
+						<th>Date</th>
+						<th>Type</th>
+						<th>Currency</th>
+						<th>Amount</th>
+						<th>Status</th>
+						<th>Operation</th>
+					</tr>
+				<?php foreach($data as $transaction): ?>
+					<tr>
+						<td><?php echo date('Y m d',strtotime($transaction->created_at)); ?></td>
+						<td><?php echo $transaction->type; ?></td>
+						<td><?php echo $transaction->currency; ?></td>
+						<td><?php echo $transaction->exchange_val; ?></td>
+						<td><?php echo $transaction->status; ?></td>
+						<td><a class="label label-success" href="/admin/transactions/<?php echo $transaction->id; ?>">View</a></td>
+					</tr>
+
+				<?php endforeach; ?>
+				</table>
+			<?php else: ?>					
+				You have made no transactions. Hence, nothing can be listed yet.
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

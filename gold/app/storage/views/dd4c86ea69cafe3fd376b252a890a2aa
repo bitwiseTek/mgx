@@ -1,0 +1,82 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Account Edit
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Account Edit</h5>
+			<?php if(Session::get('register_message')): ?>
+			<div class="ui blue message">
+				<?php echo Session::get('register_message'); ?>
+			</div>
+			<?php endif; ?>
+			<hr class="colorgraph">
+		
+			<div>
+				<?php echo Form::open(array('url' => '/admin/accounts/edit','method'=>'post','autocomplete' => 'off')); ?>
+					<?php echo Form::hidden('user_id',$user->id); ?>
+
+					<div class="form-group">
+						<?php echo Form::label('first_name', 'First Name:'); ?>
+						<?php echo Form::text('first_name',$user->first_name,array('placeholder'=>'First Name','class'=>'form-control')); ?>
+						<?php echo $errors->first('first_name'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('last_name', 'last Name:'); ?>
+						<?php echo Form::text('last_name',$user->last_name,array('placeholder'=>'Last Name','class'=>'form-control')); ?>
+						<?php echo $errors->first('last_name'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('email', 'Email:'); ?>
+						<?php echo Form::text('email',$user->email,array('placeholder'=>'example@email.com','class'=>'form-control')); ?>
+						<?php echo $errors->first('email'); ?>
+					</div>
+						
+					<div class="form-group">
+						<?php echo Form::label('phone_no', 'Phone:'); ?>
+						<?php echo Form::text('phone_no',$user->phone_no,array('placeholder'=>'0803xxxxxxx','class'=>'form-control')); ?>
+						<?php echo $errors->first('phone_no'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('username', 'UserName:'); ?>
+						<?php echo Form::text('username',$user->username,array('placeholder'=>'UserName','class'=>'form-control')); ?>
+						<?php echo $errors->first('username'); ?>
+					</div>
+					
+					<div class="form-group">
+						<?php echo Form::label('password', 'Password:'); ?>
+						<?php echo Form::password('password',array('placeholder'=>'password','class'=>'form-control')); ?>
+						<?php echo $errors->first('password'); ?>
+					</div>
+
+					<div class="form-group">
+						<label>Role:</label>
+						<select name="account_role" class="form-control">
+							<?php if($user->account_role=='geek'): ?>
+								<option selected value="geek">Geek</option>
+							<?php else: ?>
+								<option value="crm">CRM</option>
+							<?php endif; ?>
+						</select>	
+						<?php echo $errors->first('account_role'); ?>			
+					</div>
+					
+					<div class="row">
+						<div class="col-md-3">
+							<?php echo Form::submit('Update',array('class'=>'btn btn-small btn-green')); ?>
+						</div> 
+					</div>
+				<?php echo Form::close(); ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

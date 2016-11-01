@@ -1,0 +1,47 @@
+<?php $__env->startSection('page_title'); ?>
+	Notifications
+<?php $__env->stopSection(); ?>
+
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<h5>Notifications</h5>
+				<hr class="colorgraph">
+
+				<?php if(!empty($notifications)): ?>
+				<div id="user_active_list" class="ads_list active_ads_list ">
+					<?php foreach($notifications as $notification): ?>
+						<?php if($notification->type=='notify'): ?>
+							<div class="user_notification_div user_active_ad_div">
+								<a href="#" class="business_list_user_header show_notify_content"><?php echo e($notification->notify_from); ?> - <?php echo e($notification->notify_title); ?></a><div style="color:gray;font-size:11px;"><?php echo date('d M Y',strtotime($notification->created_at)); ?></div>
+								<div class="hidden_info notify_content notify_inactive"><?php echo e($notification->notification); ?></div>
+									<div class"active_ad_menu">
+										<span class="hidden_info notification_message" >Remove.....</span>
+										<span><a href="" notification_id="<?php echo e($notification->id); ?>" class="delete_notification" ><i class="icon-cancel-circled"></i>&nbsp;&nbsp;Remove</a></span>
+									</div>
+							</div>
+						<?php else: ?>
+							<div class="user_notification_div user_active_ad_div">
+								<a href="#" class="business_list_user_header show_notify_content"><?php echo e($notification->notify_from); ?> - <?php echo e($notification->notify_title); ?></a><div style="color:gray;font-size:11px;"><?php echo date('d M Y',strtotime($notification->created_at)); ?></div> 
+								<div class="hidden_info notify_content notify_inactive"><?php echo e($notification->notification); ?></div>
+									<div class"active_ad_menu">
+										<span class="hidden_info notification_message" >Remove.....</span>
+										<span><a href="" notification_id="<?php echo e($notification->id); ?>" class="delete_notification" ><i class="icon-cancel-circled"></i>&nbsp;&nbsp;Remove</a></span>
+									</div>
+							</div>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</div>
+				<?php else: ?>
+				<h3>Notice</h3>
+				<div>You have no notifications</div>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

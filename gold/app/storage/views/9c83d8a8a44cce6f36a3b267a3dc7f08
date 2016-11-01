@@ -1,0 +1,52 @@
+<?php $__env->startSection('page_title'); ?>
+	Members Subscriptions
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+		<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Subscriptions</h5>
+			<hr class="colorgraph">
+			<?php if(!empty($subscriptions)): ?>
+			 <table class="table">
+				<thead>
+					<tr>
+						<th>workChops</th>
+						<th>Expired</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php foreach($subscriptions as $subscription): ?>
+						<tr>
+							<td><a class="business_list_user_header" href="/adverts/view/<?php echo $subscription->id; ?>/<?php echo $subscription->biz_name; ?>"><?php echo ucwords($subscription->biz_name); ?></a></td>
+							<td><?php echo date('d M, Y',strtotime($subscription->expire_at)); ?></td>
+							<td>
+								<?php if(strtotime($subscription->expire_at) < strtotime(date('d-m-Y h:m:i')) && $subscription->status == 1): ?>
+									<div class="action_div">
+										<a href="#de-activate" class="deactivate_ad_button label label-success" ad_id="<?php echo $subscription->id; ?>">Un-Subscribe</a>
+										<span class="subscription_message"></span>
+									</div>
+
+								<?php endif; ?>
+							</td>
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>There are no expired subscriptions</div>
+
+
+			<?php endif; ?>	
+		</div>
+	</div>
+</div>
+		
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,107 @@
+<?php $__env->startSection('page_title'); ?>
+	My workCops on eDey
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<?php if(Session::get('advert_message')): ?>
+					<div><?php echo Session::get('advert_message'); ?></div>
+				<?php endif; ?>
+				
+				<?php if(!empty($ads)): ?>
+				
+				<h5>My workChop</h5><a class="pull-right label label-success" href="/user/businesses/create" style="font-size:14px;" ><i class="icon-plus-circle"></i> Add workChop</a>
+				<hr class="colorgraph">
+						
+				<div id="user_active_div">
+					<div id="user_active_list" class="ads_list active_ads_list">
+						<?php foreach($ads as $ad): ?>
+							<?php if($ad->status==1): ?>
+								<div class="user_active_ad_div row">
+									<div class="col-md-8 col-sm-8">
+									<div class="business_list_user_header">
+										<a target="_blank" title="Click to view" href="/businesses/view/<?php echo e($ad->id); ?>/<?php echo e($ad->biz_name); ?>" ><?php echo ucwords(strtolower($ad->biz_name)); ?></a>
+									</div>
+									<div class="business_list_user_date">
+										<span>Started: <?php echo date('d M Y',strtotime($ad->updated_at)); ?></span> - <span> Expires: <?php echo date('d M Y',strtotime($ad->expire_at)); ?></span>
+									</div>
+									
+										<div class"active_ad_menu">
+											<span>
+												<a href="/user/businesses/edit/<?php echo e($ad->id); ?>" class="edit_ad active_ad_menu"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+											</span>
+											<?php if($ad->visibility==1): ?>
+												<span class="active_ad_menu public_message"></span>
+												<span class="hide_div">
+													<a href="#hide" class="hide_ad active_ad_menu" ad_id="<?php echo e($ad->id); ?>"><i class="icon-eye-off"></i>&nbsp;&nbsp;Hide</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+												</span>
+												<span class="hidden_info public_div">
+													<a href="#publish" class="publish_ad active_ad_menu" ad_id="<?php echo e($ad->id); ?>"><i class="icon-eye-1"></i>&nbsp;&nbsp;Publish</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</span>
+												<span class="notify_div">
+													<a href="/user/businesses/notify/<?php echo e($ad->id); ?>" class="active_ad_menu"><i class="icon-comment"></i>&nbsp;&nbsp;Notify</a>
+												</span>
+											<?php else: ?>
+												<span class="public_message active_ad_menu" ></span>
+												<span class="hidden_info hide_div">
+													<a href="#hide" class="hide_ad active_ad_menu" ad_id="<?php echo e($ad->id); ?>" ><i class="icon-eye-off"></i>&nbsp;&nbsp;Hide</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;
+												</span>
+												<span class="public_div">
+													<a href="#publish" class="publish_ad active_ad_menu" ad_id="<?php echo e($ad->id); ?>" ><i class="icon-eye-1"></i>&nbsp;&nbsp;Publish</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+												</span>
+												<span class="notify_div hidden_info">
+													<a  href="/user/businesses/notify/<?php echo e($ad->id); ?>" class="active_ad_menu" ><i class="icon-comment"></i>&nbsp;&nbsp;Notify</a>
+												</span>
+											<?php endif; ?>
+										</div>
+									</div>
+									<div class="col-md-4 col-sm-4">
+										<span class="label label-info">WorkChop dey Kampe!</span>
+									</div>
+								</div>
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+				</div>
+				
+				<div id="user_inactive_div ">
+				<?php foreach($ads as $ad): ?>
+					<?php if($ad->status==0): ?>
+						<div class="user_inactive_ad_div row">
+							<div class="col-md-8">
+								<div class="business_list_user_header">
+									<a target="_blank" title="Click to Preview" style="color:gray" href="/businesses/preview/<?php echo e($ad->id); ?>/<?php echo e($ad->biz_name); ?>"><?php echo e(ucwords(strtolower($ad->biz_name))); ?></a> 
+								</div>
+								<div class="business_list_user_date">
+										<span>Created: <?php echo date('d M Y',strtotime($ad->created_at)); ?></span>
+								</div>
+
+								<div class="inactive_ad_menu business_list_user_date">
+									<span><a href="/user/businesses/edit/<?php echo e($ad->id); ?>" class="edit_ad inactive_ad_menu_link"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a>&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;</span>
+									<span class="business_list_user_date delete_message" ></span>
+									<span><a  href="#delete" class="delete_ad inactive_ad_menu_link" ad_id="<?php echo e($ad->id); ?>" ><i class="icon-cancel-circled"></i>&nbsp;&nbsp;Delete</a></span>
+								</div>
+							</div>
+							<div class="col-md-4">
+								<div style="margin-bottom:20px;"><a title="Activate this workChop" class="label label-success" href="/user/businesses/activation/<?php echo e($ad->id); ?>" >Click Here to Activate</a></div>
+							</div>
+						</div>
+					<?php endif; ?>
+				<?php endforeach; ?>
+				</div>
+					
+			<?php else: ?>	
+				<h5>My workChops</h5>
+				<hr class="colorgraph">
+				<h4>Notice</h4>			
+				<span>You never put any workChop o!, <a class="label label-success" href="/user/businesses/create">Add workChop</a></span>
+			<?php endif; ?>
+		</div>
+	</div>	
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

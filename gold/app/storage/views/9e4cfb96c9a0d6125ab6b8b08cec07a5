@@ -1,0 +1,76 @@
+<?php $__env->startSection('page_title'); ?>
+	Account Summary
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Exchange Rates</h3>
+						<hr class="divider"/>
+						<table>
+							<tr><th>Currency</th><th>Buy</th><th>Sell</th></tr>
+							<?php foreach($data['currencies'] as $currency): ?>
+								<tr><td><?php echo $currency->currency_name; ?></td><td><?php echo $currency->buy_value; ?></td><td><?php echo $currency->sell_value; ?></td></tr>
+							<?php endforeach; ?>
+						</table>
+					</div>
+				</div>
+
+				<br><br>
+
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Last Five Transactions</h3>
+						<hr class="divider"/>
+						
+						<?php if(!empty($data['transactions'])): ?>
+						<table>
+							<tr><th>Ref #</th><th>Type</th><th>Currency</th><th>Amount</th></tr>
+							<?php foreach($data['transactions'] as $transaction): ?>
+							<tr><td><?php echo $transaction->ref_no; ?></td><td><?php echo $transaction->type; ?></td><td><?php echo $transaction->currency; ?></td><td><?php echo $transaction->exchange_val; ?></td></tr>
+							<?php endforeach; ?>
+						</table>
+						<?php else: ?>	
+							<div class="message red">You have not made any transaction yet.</div>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<br><br>
+
+
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Notifications</h3>
+						<hr class="divider"/>
+						<?php if(!empty($data['notifications'])): ?>
+							<?php foreach($data['notifications'] as $notification): ?>
+
+
+							<?php endforeach; ?>
+						<?php else: ?>	
+							<div class="message red">There are no messages.</div>
+						<?php endif; ?>
+					</div>
+				</div>
+
+				<br><br>
+
+				<div class="row">
+					<div class="col-md-8">
+						<h3>Last Login Session</h3>
+						<hr class="divider"/>
+						<span>Date: <?php echo date('d M Y  h:i a',strtotime($data['last_login'])); ?></span>
+					</div>
+				</div>
+
+				
+			</div>
+		</div>	
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

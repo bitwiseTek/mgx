@@ -1,0 +1,56 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Users Panel
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Viewing Complain</h5>
+			<?php if(Session::get('admin_user_message')): ?>
+				<div><?php echo Session::get('admin_user_message'); ?></div>
+			<?php endif; ?>
+			<hr class="colorgraph">
+
+			<div class="row">
+				<div class="col-md-6">
+					 <input placeholder="Enter name" id="usersMgt_user" type="text" class="form-control">       
+			    </div>
+			    <div class="col-md-4">
+			    	 <button class="btn btn-small btn-blue" id="search_usersMgt" type="button">Go!</button>
+			    </div>
+			    <div class="col-md-2">
+					 <a class="pull-right" href="/admin/users/create" id="create_ad"><i style="font-size:20px" class="icon-user-add"></i></a>
+				</div>
+			</div>
+			<br>
+			 
+			<?php if(!empty($users)): ?>
+			<div id="search_result" class="">
+				<?php foreach($users as $user): ?>
+				  	<div>
+					      <a href="/admin/users/view/<?php echo $user->id; ?>" class="business_list_user_header"><?php echo $user->last_name; ?> <?php echo $user->first_name; ?></a>
+					      <div class="active_ad_menu">
+					      	<a href="/admin/users/edit/<?php echo $user->id; ?>" >Edit</a>&nbsp; - &nbsp;
+							<a href="/admin/users/transactions/<?php echo $user->id; ?>">Transactions</a> &nbsp; - &nbsp;
+							<a href="/admin/users/edit/password/<?php echo $user->id; ?>">Password</a> 
+					     </div>
+			  		</div>
+			  		<hr class="normal-divider">
+				<?php endforeach; ?>
+			</div>
+			<div class="users_search_message"></div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>
+					There are no users.
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

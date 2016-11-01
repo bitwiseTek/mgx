@@ -1,0 +1,50 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Maintenance Mode Setup
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Maintenance Mode Setup</h5>
+			<hr class="colorgraph">
+			<div class="row">
+				<h5>" On " Maintenance Mode</h5>
+					 <?php echo Form::open(array('url' => '/admin/maintenance/down', 'method'=>'post')); ?>
+						<div class="form-group">
+							<?php echo Form::label('up_route', 'Route:'); ?>
+							<?php echo Form::text('up_route','',array('class'=>'form-control')); ?>
+						</div>
+						<div class="form-group">
+						 <?php echo Form::submit('ON',array('class'=>'btn btn-small btn-red')); ?>
+						</div>
+					 <?php echo Form::close(); ?>
+			</div>
+			<?php if(Session::get('up_message')): ?>
+				<div><?php echo e(Session::get('up_message')); ?></div>
+			<?php endif; ?>
+
+			<div class="row">
+				<h5>" Off " Maintenance Mode</h5>
+					<?php echo Form::open(array('url' => '/admin/maintenance/up', 'method'=>'post')); ?>
+						<div class="form-group">
+						<?php echo Form::label('down_route', 'Route:'); ?>
+						<?php echo Form::text('down_route','',array('class'=>'form-control')); ?>
+						</div>
+
+						<div class="form-group">
+						 <?php echo Form::submit('OFF',array('class'=>'btn btn-small btn-blue')); ?>
+						 </div>
+					 <?php echo Form::close(); ?>
+			</div>
+
+			<?php if(Session::get('down_message')): ?>
+				<div><?php echo e(Session::get('down_message')); ?></div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

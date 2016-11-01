@@ -1,0 +1,88 @@
+<?php $__env->startSection('page_title'); ?>
+<?php echo e((!is_null($ad->id) ? $ad->biz_name.' preview ' : 'preview no dey!')); ?>
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+        <?php if(!is_null($ad->id)): ?>
+        	<h5><?php echo $ad->biz_name; ?> <span class="label label-danger">This workChop na Preview</span></h5>
+        	<hr class="colorgraph">
+	          <div class="tipue_search_content_text business_header">
+	              <?php echo str_limit($ad->biz_description,100); ?>
+	          </div>
+
+	          <div class="business_details">
+				<h5>Products and Services <i class="icon-basket-1"></i></h5>
+				<div class="business_container tipue_search_content_text">
+				<?php echo $ad->biz_tags; ?>
+			  	</div>
+			  </div>
+
+			   <div class="business_details">
+					<h5>Product/Services Images <i class="icon-picture"></i></h5>
+					<div class="business_container tipue_search_content_text" style="clear:both">
+						<?php if($ad->images!=null): ?>
+							<?php $count = 0 ;?>
+							<?php foreach($ad->images as $key => $image): ?>
+								<div style="float:left; margin-right:10px;text-align:center">
+									<span class="label label-success image_desc"><?php echo $ad->images_name[$count]; ?></span>
+									<div id="product_thumb" class="imgLiquidFill imgLiquid">
+										<a class="venobox" href="/images/businesses/<?php echo $image; ?>" data-gall="images">
+											<img src="/images/businesses/<?php echo $image; ?>" alt="" class="ui  image "/>
+										</a>
+									</div>
+								</div>
+							<?php $count++ ;?>
+							<?php endforeach; ?>
+						<?php else: ?>
+							<div id="business_no_images">Pictures no dey!</div>
+						<?php endif; ?>
+				  	</div>
+			  </div>
+
+			  <div class="business_details">
+				<h5>Contact Details <i class="icon-pin"></i></h5>
+				<div class="business_container tipue_search_content_text">
+					<div class="item">
+						Location: &nbsp; <?php echo $ad->biz_location; ?>
+					</div>
+					<div class="item">
+						Phone: &nbsp; <?php echo $ad->phone_no; ?>
+					</div>
+					<div class="item">
+						eMail: &nbsp; <?php echo $ad->email; ?>
+					</div>
+					<div class="item">
+						website: &nbsp; <?php echo $ad->website; ?>
+					</div>
+			  	</div>
+			  </div>
+
+			  <div class="business_details">
+				<h5>Calling and Working Periods <i class="icon-clock"></i></h5>
+				<div class="business_container tipue_search_content_text">
+					<div class="item">
+						Working Hours: &nbsp; <?php echo $ad->working_hours; ?>
+					</div>
+					<div class="item">
+						Calling Hours: &nbsp; <?php echo $ad->calling_hours; ?>
+					</div>
+			  	</div>
+			  </div>
+		  <?php else: ?>
+	  		<h5>Notice</h5>
+	  		<div>This workChop preview no dey available.</div>
+		  <?php endif; ?>
+		  </div>
+          <div class="col-md-3">
+
+          </div>
+      </div>
+   </div>
+
+  <?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

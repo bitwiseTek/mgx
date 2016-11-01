@@ -1,0 +1,80 @@
+<?php $__env->startSection('page_title'); ?>
+	d' workChops wey I like
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	
+		<div id="following" class="main_content container">
+			<div class="row">
+					<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				<div class="col-md-9">
+				<h5>Bookmarks</h5>
+				<hr class="colorgraph">
+			
+				<?php if(!empty($following)): ?>
+					<?php foreach($following as $follow): ?>
+							<?php if($follow->status==1): ?>
+								<div class="bookmark_row follow_ad_div active_follow_ad">
+									<div class="business_list_user_header">
+										<a href="/businesses/view/<?php echo e($follow->id); ?>/<?php echo e($follow->biz_name); ?>" ><?php echo e($follow->biz_name); ?></a>
+									</div>
+									<div class="business_list_user_date">Bookmarked: <?php echo date('d M Y',strtotime($follow->followed_at)); ?></div>
+									<div>
+										<span class="business_list_user_date follow_message"></span>
+										<span class="business_list_user_date"><a href="#" class="unfollow_ad" ad_id="<?php echo e($follow->id); ?>" ><i class="icon-minus-squared"></i>&nbsp;&nbsp;Remove</a></span>
+									</div>
+								</div>
+							<?php else: ?>
+								<?php if($follow->status==3): ?>
+								<div class=" bookmark_row row">
+									<div class="col-md-8">
+										<div class="follow_ad_div .inactive_follow_ad ">
+											<div class="business_list_user_header"><?php echo e($follow->biz_name); ?></div>
+											<div>
+												<div class="business_list_user_date">Bookmarked: <?php echo date('d M Y',strtotime($follow->followed_at)); ?></div>
+												<div>
+													<span class="business_list_user_date follow_message"></span>
+													<span><a href="#" class="unfollow_ad" ad_id="<?php echo e($follow->id); ?>" ><i class="icon-minus-squared"></i>&nbsp;&nbsp;Remove</a></span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-4">
+										<span class="label label-success">This workChop is no longer active</span>
+									</div>
+								</div>
+								<?php else: ?>
+								<div class=" bookmark_row row">
+									<div class="follow_ad_div .deleted_follow_ad ">
+										<div class="col-md-8">
+											<div class="business_list_user_header"><?php echo e($follow->biz_name); ?></div>
+											<div>
+												<div class="business_list_user_date">Bookmakrked <?php echo date('d M Y',strtotime($follow->followed_at)); ?></div>
+												<div>
+													<span class="business_list_user_date follow_message"></span>
+													<span><a href="#" class="unfollow_ad" ad_id="<?php echo e($follow->id); ?>" ><i class="icon-minus-squared"></i>&nbsp;&nbsp;Remove</a></span>
+												</div>
+											</div>
+										</div>
+										<div class="col-md-4">
+											<span class="label label-success">This workChop has been deleted</span>
+										</div>
+									</div>
+								</div>
+								<?php endif; ?>
+							<?php endif; ?>
+					<?php endforeach; ?>
+				<?php else: ?>
+					<div class="">
+						<h3>Notice</h3>
+						<div class="">
+							Your bookmark list is empty
+						</div>
+					</div>
+				<?php endif; ?>
+				</div>
+			</div>
+		</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,36 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : User Subscription History
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5><?php echo e($transactions[0]->user_name); ?> - Transactions History</h5>
+			<hr class="colorgraph">
+
+			<?php if(!empty($transactions[0])): ?>
+					<div class="ui selection list">
+						<?php foreach($transactions as $transaction): ?>
+								<div class="item ui basic message">
+									<div>Paid <?php echo $transaction->amount; ?> for eDey listing subscription</div>
+									<div>
+										<i class="icon-calendar"></i> <?php echo date('d-m-Y h:i a',strtotime($transaction->paid_on)); ?>
+										- Order-ID : <?php echo $transaction->transaction_id; ?>
+										- Status : <?php echo $transaction->status; ?>
+									</div>
+								</div>
+								<hr style="border-top:1px dashed #ccc">
+						<?php endforeach; ?>
+					</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+		 		<div>User has no transaction record.</div>
+		 	<?php endif; ?>	
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

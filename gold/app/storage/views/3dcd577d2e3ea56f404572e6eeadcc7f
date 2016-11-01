@@ -1,0 +1,44 @@
+<?php $__env->startSection('page_title'); ?>
+		<?php echo ( (empty($data)) ? 'No Events in Category' : 'Viewing '.$data[0]->category.' Category' ); ?>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('content'); ?>
+	 <?php echo $__env->make('templates.include_event_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+	 	<div class="container">
+	      <div id="top_banner">
+	         <img src="/assets/images/banner.jpg" height="90" width="868">
+	      </div>
+	    </div>
+		<div class="container">
+			<div class="row">
+		          <div class="col-md-9">
+			          <?php if(empty($data)): ?>
+			             <h3>Notice</h3>
+			             <div>we no find that one O, check back again.</div> 
+			          <?php else: ?>
+			              <br><br><div id="tipue_search_results_count">Events in <?php echo $data[0]->category; ?> category</div>
+			              <?php foreach($data as $event): ?>	
+							<div class="event_container">
+				              	<div class="event_content">
+				                  <div class="tipue_search_content_title"><a href="<?php echo '/events/view/'.$event->id.'/'.$event->event_name; ?>"><?php echo str_limit(ucwords($event->event_name),80); ?> </a></div>
+				                  <div class="tipue_search_content_url"><a href="<?php echo '/events/view/'.$event->id.'/'.$event->event_name; ?>"><?php echo str_limit($event->event_address,80); ?></a></div>
+				                  <div><?php echo str_limit($event->event_description,100); ?></div>
+				                </div>
+				                <?php if(strtotime($event->start_date)==strtotime($event->end_date)): ?>
+			                  		<div class="event_date"><?php echo date('M d',strtotime($event->start_date)); ?></div>
+			                  	<?php else: ?>
+			                  		<div class="event_date"><?php echo date('M d',strtotime($event->start_date)); ?> - <?php echo date('M d',strtotime($event->end_date)); ?></div>
+			                  	<?php endif; ?>
+				            </div>
+						   <?php endforeach; ?>
+					  <?php endif; ?>	
+				  </div>
+				  <br><br>
+		          <div class="hidden-xs col-md-3">
+		              <?php echo $__env->make('templates.include_adverts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		          </div>
+          	</div>
+        </div>
+ 
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

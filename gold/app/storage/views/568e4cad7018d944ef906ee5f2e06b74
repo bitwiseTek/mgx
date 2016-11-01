@@ -1,0 +1,51 @@
+<?php $__env->startSection('page_title'); ?>
+	Login 
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+
+<div class="container main_content">
+	<div class="row">
+	    <div class="col-md-4">
+			<h3>Login</h3>
+			<hr class="divider"/> 
+			<?php echo Form::open(array('url' => '/login', 'method'=>'post','role'=>'form')); ?>
+				<div class="form-group">
+					<?php echo Form::label('username', 'UserName:',array('class'=>'label')); ?>
+					<?php echo Form::text('username','',array('placeholder'=>'Enter your username','class'=>'form-control input-lg')); ?>
+					<?php echo $errors->first('username'); ?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo Form::label('password', 'Password:',array('class'=>'label')); ?>
+					<?php echo Form::password('password',array('placeholder'=>'Enter your password','class'=>'form-control input-lg')); ?>
+					<?php echo $errors->first('password'); ?>
+				</div>
+			
+			<div class="row">
+				<div class="col-md-3">
+					<?php echo Form::submit('Login',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+				</div>
+				<div class="col-md-9">
+					<?php if(Session::get('login_message')): ?>
+							<?php echo Session::get('login_message'); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php echo Form::close(); ?>
+
+
+			<hr class="divider" />
+			<div class="pull-right" style="margin-top:10px;"><a class="label label-success" href="/login/password-recovery">Recover Forgotten Password.</a></div>
+		</div>
+		<div class="col-md-8 hidden-sm hidden-xs">
+
+		</div>
+	</div>
+
+</div>
+    
+				
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,32 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Admin Make Payment
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Payment Panel</h5>
+			<hr class="colorgraph">
+
+			 <div class="row">
+				<div class="col-md-6 col-md-offset-4">
+					<input placeholder="Enter name" name="search" id="payment_user_search" type="text" class="form-control">    
+			    </div>
+			    <div class="col-md-2">
+			    	<button class="btn btn-small btn-blue" id="payment_search" type="button">Go!</button>
+			    </div>
+			</div>
+
+			 <br>
+			<div id="search_result" class=" ">
+		
+			</div>
+			<div class="payment_search_message"></div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

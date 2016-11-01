@@ -1,0 +1,249 @@
+<?php $__env->startSection('page_title'); ?>
+  <?php echo e((!is_null($data['ad']->id) ? ucwords($data['ad']->biz_name) : 'workChop Listing no dey!')); ?>
+<?php $__env->stopSection(); ?>
+
+<?php if(!is_null($data)): ?>
+	<?php $__env->startSection('facebook_share'); ?>
+	    <meta property="og:title" content="<?php echo $data['ad']->biz_name; ?>" /> 
+	    <meta property="og:image" content="<?php (!empty($data['ad']->biz_logo) ? print 'http://www.edey.biz/images/logos/'.$data['ad']->biz_logo : print 'http://www.edey.biz/images/logos/share.png' );?>" /> 
+	    <meta property="og:description" content="<?php echo $data['ad']->biz_description; ?>" /> 
+	    <meta property="og:url" content="http://www.edey.biz/businesses/view/<?php echo $data['ad']->id; ?>/<?php echo $data['ad']->biz_name; ?>">
+	    <meta property="og:type" content="website" />
+	    <meta property="og:site_name" content="eDey : The Localized Business and Events Listing Directory" />
+	    <meta property="og:locale" content="en_US" />
+	<?php $__env->stopSection(); ?>
+
+	<?php $__env->startSection('twitter_share'); ?>
+		<meta name="twitter:title" content="<?php echo $data['ad']->biz_name; ?>" />
+		<meta name="twitter:image" content="<?php (!empty($data['ad']->biz_logo) ? print 'http://www.edey.biz/images/logos/'.$data['ad']->biz_logo : print 'http://www.edey.biz/images/logos/share.png' );?>" />
+		<meta name="twitter:description" content="<?php echo $data['ad']->biz_description; ?>" />
+		<meta name="twitter:url" content="http://www.edey.biz/businesses/view/<?php echo $data['ad']->id; ?>/<?php echo $data['ad']->biz_name; ?>">
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="eDey : The Localized Business and Events Listing Directory"> 
+	<?php $__env->stopSection(); ?>
+<?php endif; ?>
+
+<?php $__env->startSection('content'); ?>
+
+    <?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <div class="container marketing">
+      <div class="row">
+        <div class="col-md-9">
+        	<h5><?php echo ucwords($data['ad']->biz_name); ?></h5><div style="margin-top:-11px;" class='workChop_rating' data-rating='<?php echo e($data['rate_follow']->avg); ?>'></div>
+        	<hr class="colorgraph">
+	          <div class="tipue_search_content_text business_header">
+	              <?php echo $data['ad']->biz_description; ?>
+	          </div>
+
+	          <div class="business_details">
+				<h5>Products and Services <i class="icon-basket-1"></i></h5>
+					
+				<div class="business_container tipue_search_content_text">
+				<?php echo $data['ad']->biz_tags; ?>
+			  	</div>
+			  </div>
+
+			   <div class="business_details">
+					<h5>Images <i class="icon-picture"></i></h5>
+					<div class="business_container tipue_search_content_text" style="clear:both">
+						<?php if($data['ad']->images!=null): ?>
+							<?php $count = 0 ;?>
+							<?php foreach($data['ad']->images as $key => $image): ?>
+								<div  style="float:left; margin-right:10px;text-align:center">
+									<span class="label label-success image_desc"><?php echo str_limit($data['ad']->images_name[$count],10); ?></span>
+									<div id="product_thumb" class="imgLiquidFill imgLiquid">
+										<a class="venobox" href="/images/businesses/<?php echo $image; ?>" data-gall="images">
+											<img src="/images/businesses/<?php echo $image; ?>" alt="" class="ui  image "/>
+										</a>
+									</div>
+								</div>
+							<?php $count++ ;?>
+							<?php endforeach; ?>
+							<div style="clear:both"></div>
+						<?php else: ?>
+							<div id="business_no_images">Pictures no dey!</div>
+						<?php endif; ?>
+				  	</div>
+			  </div>
+
+			  <div class="business_details">
+				<h5>Contact Details <i class="icon-pin"></i></h5>
+					
+				<div class="business_container tipue_search_content_text">
+					<div class="item">
+						Location: &nbsp; <?php echo $data['ad']->biz_location; ?>
+					</div>
+					<div class="item">
+						Phone: &nbsp; <?php echo $data['ad']->phone_no; ?>
+					</div>
+					<div class="item">
+						eMail: &nbsp; <?php echo $data['ad']->email; ?>
+					</div>
+					<div class="item">
+						website: &nbsp; <?php echo $data['ad']->website; ?>
+					</div>
+			  	</div>
+			  </div>
+
+			  <div class="business_details">
+				<h5>Calling and Working Periods <i class="icon-clock"></i></h5>
+					
+				<div class="business_container tipue_search_content_text">
+					<div class="item">
+						Working Hours: &nbsp; <?php echo $data['ad']->working_hours; ?>
+					</div>
+					<div class="item">
+						Calling Hours: &nbsp; <?php echo $data['ad']->calling_hours; ?>
+					</div>
+			  	</div>
+			  </div>
+
+			  <div style="margin-top:14px;">
+			  	<h5 class="label label-success">Rate, Share and Bookmark</h5>
+			  	<div style="border:1px dashed #ccc; min-height:38px;margin-top:10px;padding-top:8px;padding-left:5px;">
+			  		<div class="row">
+			  			<div class="col-md-4">
+			  			<?php if(Session::get('user_id')): ?>
+			  				Rate : &nbsp;&nbsp;<div class='starrr'></div><input type="hidden" id="adview_id_div" value="<?php echo e($data['ad']->id); ?>">
+			  			<?php else: ?>
+			  				Rate : &nbsp;&nbsp;<div class='fake_rate'></div>
+			  				
+			  			<?php endif; ?>
+			  			</div>
+			  			<div class="col-md-4">
+			  				<?php if(Session::get('user_id')): ?>
+							<div class="follow_ad_div">	
+								<?php if($data['isFollowing']==0): ?>
+									Bookmark :&nbsp;&nbsp; 
+									<a style="font-size:18px;" id="user_follow_ad" ad_id="<?php echo e($data['ad']->id); ?>" href="#"><i class="icon-thumbs-up"></i></a> 
+									<span class="follow_message" ></span>
+								<?php elseif($data['isFollowing']==1): ?>
+									Unmark :&nbsp;&nbsp;
+									<a style="font-size:18px;" href=" " id="unfollow_ad" ad_id="<?php echo e($data['ad']->id); ?>" ><i class="icon-thumbs-down"></i></a>
+									<span class="follow_message" ></span>
+								<?php endif; ?>
+							</div>
+							<?php else: ?>
+							<div class="follow_ad_div">	
+								<?php if($data['isFollowing']==0): ?>
+									Bookmark :&nbsp;&nbsp;
+									<a style="font-size:18px;" data-toggle="modal" data-target="#bookmakrModal" href="#"><i class="icon-thumbs-up"></i></a> 
+								<?php elseif($data['isFollowing']==1): ?>
+									Unmark:&nbsp;&nbsp;
+									<a style="font-size:18px;" data-toggle="modal" data-target="#bookmakrModal" href="#"><i class="icon-thumbs-down"></i></a>
+								<?php endif; ?>
+								 <div class="modal fade" id="bookmakrModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								        <h4 class="modal-title" id="myModalLabel">Notice</h4>
+								      </div>
+								      <div class="modal-body">
+								        <span>You need to be logged in to use this feature. <a class="label label-success" href="/login"> Login</a></span>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-gray btn-small" data-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+							</div>
+						<?php endif; ?>
+			  			</div>
+			  			<div class="col-md-4">
+			  				Share: &nbsp;&nbsp;<a style="font-size:18px;" target="_blank" href="http://twitter.com/home?status=http://www.edey.biz/businesses/view/<?php echo $data['ad']->id; ?>/<?php echo $data['ad']->biz_name; ?>" >
+										<i class="icon-twitter-circled"></i> 
+								   </a>
+								   &nbsp;&nbsp;
+					  				<a style="font-size:18px;" target="_blank" href="https://www.facebook.com/sharer.php?app_id=309437425817038&sdk=joey&u=http://www.edey.biz/businesses/view/<?php echo $data['ad']->id; ?>/<?php echo $data['ad']->biz_name; ?>" >
+									     <i class="icon-facebook-circled"></i> 
+									</a>
+			  			</div>
+			  		</div>
+
+			  	</div>
+			  </div>
+
+		
+				<div class="detailBox">
+				    <div class="titleBox">
+				      <label>Reviews</label>
+				    </div>
+				    <div class="actionBox">       
+				        <?php if(Session::get('user_id')): ?>
+				        <div class="row">
+				        	<div class="col-md-10">
+				                <input class="form-control review_text" id="ad_review" type="text" placeholder="Your reviews" />
+				            </div>
+				            <div class="col-md-2">
+				                <button id="ad_post_review" ad_id="<?php echo e($data['ad']->id); ?>" class="btn btn-small btn-gray">Post</button>
+				            </div>
+				         </div>
+				        <?php else: ?>
+			        	<div class="row">
+				        	<div class="col-md-10">
+				        		 <input class="form-control review_text" id="ad_review" type="text" placeholder="Your reviews" />
+				        	</div>
+				        	<div class="col-md-2">
+				        		<div  data-toggle="modal" data-target="#reviewModal" class="btn btn-small btn-gray">Post</div>
+				        	</div>
+			        	</div>
+			            
+						<div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						  <div class="modal-dialog">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Notice</h4>
+						      </div>
+						      <div class="modal-body">
+						        <span>You need to be logged in to use this feature. <a class="label label-success" href="/login"> Login</a></span>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="button" class="btn btn-gray btn-small" data-dismiss="modal">Close</button>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+				        <?php endif; ?>
+				        <div id="review_message"></div>
+				        <ul class="commentList">
+				        	<?php if(count($data['reviews'])!=0): ?>
+									<?php foreach($data['reviews'] as $review): ?>
+							            <li>
+							           		<span class="author review_author"><?php echo e($review->last_name); ?> <?php echo e($review->first_name); ?></span>
+							                <div class="commentText">
+							                    <p class="date sub-text"><?php echo e($review->review); ?></p> <span class="date sub-text"><?php echo e(date('d M Y',strtotime($review->reviewed_at))); ?> at <?php echo e(date('h:i a',strtotime($review->reviewed_at))); ?></span>
+							                </div>
+							            </li>
+							      <?php endforeach; ?>				
+							 <?php endif; ?>
+				        </ul>
+				    </div>
+				</div>
+
+		  </div>
+        <div class="col-md-3">
+        	 
+        	 <?php echo $__env->make('templates.include_adverts', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        	 <br><br>
+        	 <div style="min-height:40px;padding:5px;margin-left:30px">
+        	  <h5>Similar workChops</h5>
+        	  <hr style="border-top:1px dashed #ccc;margin-bottom:-3px;margin-top:-3px;"><br>
+				<?php if(!empty($data['similars'])): ?>
+					<?php foreach($data['similars'] as $similar): ?>
+						<div>
+							<a  class="business_list_user_header" href="<?php echo '/businesses/view/'.$similar->id.'/'.$similar->biz_name; ?>"><?php echo str_limit(ucwords($similar->biz_name),20); ?></a>
+							<div><?php echo str_limit($similar->biz_description,40); ?></div>
+						</div>
+						<br>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</div>
+        </div>
+      </div>
+    </div>
+
+  <?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

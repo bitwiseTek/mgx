@@ -1,0 +1,91 @@
+<?php $__env->startSection('page_title'); ?>
+	Buy and Sell Currencies
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9 center_content">
+				<div class="row">
+					<?php if(Session::get('buy_message')): ?>
+						<div><?php echo Session::get('buy_message'); ?></div>
+					<?php endif; ?>
+					<div class="col-md-8">
+						<h3>Buying e-Currency</h3>
+						<hr class="divider"></hr>
+						
+						<?php echo Form::open(array('url' => '/users/exchange-currencies/buy', 'method'=>'post','role'=>'form')); ?>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Currency:</label>
+									<select class="form-control currency_drop_down" name="buy_currency" id="buy_currency"></select> 
+									<?php echo $errors->first('buy_currency'); ?>	
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('buy_amount', 'Amount: (min:10)'); ?>
+									<?php echo Form::text('buy_amount','',array('placeholder'=>'Specify Amount','class'=>'form-control input-lg','id'=>'buy_amount')); ?>
+									<?php echo $errors->first('buy_amount'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<div id="buy_message"></div>
+							</div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Buy',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+
+
+				<br><br>
+				OR
+				<br><br>
+
+				<div class="row">
+					<?php if(Session::get('sell_message')): ?>
+						<div><?php echo Session::get('sell_message'); ?></div>
+					<?php endif; ?>
+					<div class="col-md-8">
+						<h3>Selling e-Currency</h3>
+						<hr class="divider"></hr>
+						<?php echo Form::open(array('url' => '/users/exchange-currencies/sell', 'method'=>'post','role'=>'form')); ?>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Currency:</label>
+									<select class="currency_drop_down form-control" name="sell_currency" id="sell_currency"></select> 
+									<?php echo $errors->first('sell_currency'); ?>	
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('sell_amount', 'Amount: (min:10)'); ?>
+									<?php echo Form::text('sell_amount','',array('placeholder'=>'Specify Amount','class'=>'form-control input-lg','id'=>'sell_amount')); ?>
+									<?php echo $errors->first('sell_amount'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9">
+								<div id="sell_message"></div>
+							</div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Sell',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

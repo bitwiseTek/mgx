@@ -1,0 +1,31 @@
+<?php $__env->startSection('page_title'); ?>
+	Oya recover ur password
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+	<div class="container main_content">
+	<div class="row">
+	    <div class="col-md-6 ">
+	    	<h3>I want my password back<small> we go help u get am.</small></h3>
+				<hr class="colorgraph">
+				<form action="/login/password-recovery" method="POST">
+					<div class="form-group">
+						<label>Enter Registration Email or Username :</label>
+				    	<input type="text" placeholder="Enter Email or Username"  name="email" class="form-control">
+				    </div>
+				    <div class="form-group">
+				    <input type="submit" value="Get Token" class="btn btn-small btn-blue">
+				    </div>
+
+				   	<?php if(Session::get('recovery_message')): ?>
+				   		 <div><?php echo Session::get('recovery_message'); ?></div>
+				   	<?php endif; ?>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

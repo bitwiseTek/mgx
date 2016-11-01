@@ -1,0 +1,44 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Leads
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Users Leads</h5>
+			<hr class="colorgraph">
+			<?php if(!is_Null($leads)): ?>
+			<div>
+				<table class="table">
+					<thead>
+						<th>FullName</th>
+						<th>Phone No</th>
+						<th>workChop</th>
+						<th>location</th>
+						<th>Action</th>
+					</thead>
+					<tbody>
+					<?php foreach($leads as $lead): ?>
+						<tr>
+							<td><?php echo $lead->last_name; ?> <?php echo $lead->first_name; ?></td>
+							<td><?php echo $lead->phone_no; ?></td>
+							<td><?php echo $lead->biz_name; ?></td>
+							<td><?php echo $lead->biz_location; ?></td>
+							<td><a class="label label-success" href="#">Seen</a></td>
+						</tr>
+					<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+			<?php else: ?>
+				<h3>Notice</h3>
+				<div>No available lead!</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

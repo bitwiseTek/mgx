@@ -1,0 +1,16 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey registeration status
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container">
+		<div id="top_banner" class="carousel carousel-fade slide" data-ride="carousel">
+          <span style="color:#ddd;font-size:16px;margin-left:40%">Place your advertisement here</span>
+      </div>
+		<h4>Notice</h4>
+		 <?php echo Session::get('register_message'); ?> <a class="label label-success" href="/login">Login</a> to d' eDey experience. 
+</div>
+	
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,98 @@
+<?php $__env->startSection('page_title'); ?>
+	U' Sabi Jor - Register
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="container main_content">
+	<div class="row">
+		<div class="col-md-4 hidden-sm hidden-xs">
+
+
+		</div>
+
+	    <div class="col-md-8">
+			<h3>Get ur account today!</h3>
+			<hr class="colorgraph">
+			<?php echo Form::open(array('url' => '/register', 'method'=>'post','autocomplete' => 'off','role'=>'form')); ?>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+	                    <?php echo Form::label('first_name', 'First Name:'); ?>
+						<?php echo Form::text('first_name','',array('placeholder'=>'First Name','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('first_name'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('last_name', 'last Name:'); ?>
+						<?php echo Form::text('last_name','',array('placeholder'=>'Last Name','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('last_name'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('email', 'Email:'); ?>
+						<?php echo Form::text('email','',array('placeholder'=>'example@email.com','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('email'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('phone_no', 'Mobile:'); ?>
+						<?php echo Form::text('phone_no','',array('placeholder'=>'phone number','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('phone_no'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+						<?php echo Form::label('username', 'UserName:'); ?>
+						<?php echo Form::text('username','',array('placeholder'=>'Username','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('username'); ?>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('password', 'Password:'); ?>
+						<?php echo Form::password('password',array('placeholder'=>'password','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('password'); ?>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<?php echo Form::label('password_confirmation', 'Retype Password:'); ?>
+						<?php echo Form::password('password_confirmation',array('placeholder'=>'password','class'=>'form-control input-lg')); ?>
+						<?php echo $errors->first('password_confirmation'); ?>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					 By clicking the <strong class="label label-primary">register</strong> button, you agree to the <a href="/terms-and-conditions">terms and conditions</a> of eDey
+				</div>
+			</div>
+			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-md-4">
+					<?php echo Form::submit('Register',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+				</div>
+			</div>
+			<?php echo Form::close(); ?>
+
+			<?php if(Session::get('register_message')): ?>
+				<div class="ui blue message">
+					<?php echo Session::get('register_message'); ?>
+				</div>
+			<?php endif; ?>
+		</div>
+	</div>
+
+</div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

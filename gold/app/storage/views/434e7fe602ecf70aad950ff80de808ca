@@ -1,0 +1,21 @@
+<?php $__env->startSection('page_title'); ?>
+	Transaction Details
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<div class="container main_content">
+		<div class="row">
+				<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+			<h3>Transaction Details</h3>
+			<hr class="divider" />
+				<div>Currency: <?php echo $data->currency; ?></div>
+				<div>Exchange Amount: <?php echo $data->exchange_val; ?></div>
+				<div>Status: <?php echo $data->status; ?></div>
+				<div>Ref #: <?php echo $data->ref_no; ?></div>
+				<div>Date: <?php echo date('d M Y',strtotime($data->created_at)); ?></div>
+			</div>
+		</div>	
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

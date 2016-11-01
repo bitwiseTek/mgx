@@ -1,0 +1,43 @@
+<?php $__env->startSection('page_title'); ?>
+	System Users
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container main_content">
+	<div class="row">
+		<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h3>Users Management</h3>
+			<hr class="divider"/>
+			<?php if(!empty($data)): ?>
+				<table>
+					<tr>
+						<th>LastName</th>
+						<th>FirstName</th>
+						<th>Username</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>Status</th>
+						<th>Operation</th>
+					</tr>
+				<?php foreach($data as $user): ?>
+					<tr>
+						<td><?php echo $user->last_name; ?></td>
+						<td><?php echo $user->first_name; ?></td>
+						<td><?php echo $user->username; ?></td>
+						<td><?php echo $user->phone_no; ?></td>
+						<td><?php echo $user->email; ?></td>
+						<td><?php echo $user->status; ?></td>
+						<td><a class="label label-success" href="/admin/users/<?php echo $user->id; ?>">View</a></td>
+					</tr>
+
+				<?php endforeach; ?>
+				</table>
+			<?php else: ?>					
+				You have made no transactions. Hence, nothing can be listed yet.
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,37 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Upload Business Listing
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>	
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>Upload workChop</h5>
+			<hr class="colorgraph">
+
+		    <div class="row">
+				<div class="col-md-6 col-md-offset-4">
+					 <input placeholder="Enter name" name="search" id="ad_upload_users" type="text" class="form-control">       
+			    </div>
+			    <div class="col-md-2">
+			    	 <button class="btn btn-small btn-blue" id="search_button" type="button">Go!</button>
+			    </div>
+			</div>
+			<br>
+
+			<div id="search_result">
+
+			</div>
+			<div class="upload_message"></div>
+
+			<?php if(Session::get('advert_message')): ?>
+				<div><?php echo Session::get('advert_message'); ?></div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>			
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,35 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey - System Summary
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>System Summary</h5>
+			<hr class="colorgraph"/>
+			<div>
+
+			    <div class="col-md-4" style="border-right:1px dashed #ddd;text-align:center">
+			    	<div><h5><i style="font-size:24px;" class="icon-users"></i> Members</h5></div>
+					<div><?php echo $statistics['total_active_users']; ?> | <?php echo $statistics['total_inactive_users']; ?> = <?php echo $statistics['total_active_users'] + $statistics['total_inactive_users']; ?></div>
+			    </div>
+
+			    <div class="col-md-4" style="border-right:1px dashed #ddd;text-align:center">
+			    	<div><h5><i style="font-size:24px;" class="icon-suitcase"></i> workChops</h5></div>
+					<div><?php echo $statistics['total_active_ads']; ?> | <?php echo $statistics['total_inactive_ads']; ?> = <?php echo $statistics['total_active_ads'] + $statistics['total_inactive_ads']; ?></div>
+			    </div>
+
+			    <div class="col-md-4" style="border-right:1px dashed #ddd;text-align:center">
+			    	<div><h5><i style="font-size:24px;" class="icon-comment"></i> Complains</h5></div>
+					<div><?php echo $statistics['pending_complains']; ?></div>
+			    </div>
+
+			</div>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

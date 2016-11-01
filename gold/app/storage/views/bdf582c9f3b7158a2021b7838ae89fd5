@@ -1,0 +1,56 @@
+<?php $__env->startSection('page_title'); ?>
+	Oya! Login 
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+
+<div class="container main_content">
+	<div class="row">
+	    <div class="col-md-6 col-md-offset-1">
+			<h3>Login to d' eDey experience!</h3>
+			<hr class="colorgraph">
+			<?php echo Form::open(array('url' => '/login', 'method'=>'post','role'=>'form')); ?>
+		
+		
+				<div class="form-group">
+					<?php echo Form::label('username', 'UserName:'); ?>
+					<?php echo Form::text('username','',array('placeholder'=>'Enter your username','class'=>'form-control input-lg')); ?>
+					<?php echo $errors->first('username'); ?>
+				</div>
+			
+				<div class="form-group">
+					<?php echo Form::label('password', 'Password:'); ?>
+					<?php echo Form::password('password',array('placeholder'=>'Enter your password','class'=>'form-control input-lg')); ?>
+					<?php echo $errors->first('password'); ?>
+				</div>
+			
+			<hr class="colorgraph">
+
+			<div class="row">
+				<div class="col-md-3">
+					<?php echo Form::submit('Login',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+				</div>
+				<div class="col-md-9">
+					<?php if(Session::get('login_message')): ?>
+							<?php echo Session::get('login_message'); ?>
+					<?php endif; ?>
+				</div>
+			</div>
+
+			<div class="normal-divider"></div>
+			<div class="pull-right" style="margin-top:10px;">can't login <a href="/login/password-recovery">U' don forget ur password.</a></div>
+			<?php echo Form::close(); ?>
+
+		</div>
+		<div class="col-md-5 hidden-sm hidden-xs">
+
+		</div>
+	</div>
+
+</div>
+    
+				
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,19 @@
+<?php $__env->startSection('page_title'); ?>
+	About Us
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<div class="container main_content">
+	<div class="row">
+		<div class="col-md-8">
+			<h3>We are Gold Exchange.</h3>
+			<hr class="divider">
+		</div>
+
+		<div class="col-md-4 hidden-sm hidden-xs">
+			
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,74 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Register User
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>New User</h5>
+			<hr class="colorgraph">
+			<?php if(Session::get('created_message')): ?>
+				<div class="message_info ui small green message"><?php echo Session::get('created_message'); ?></div>
+			<?php endif; ?>
+			
+			<div class="register">
+			<?php echo Form::open(array('url' => '/admin/users/create', 'method'=>'post','autocomplete' => 'off')); ?>
+					<div class="form-group">
+						<?php echo Form::label('username', 'UserName:'); ?>
+						<?php echo Form::text('username','',array('placeholder'=>'UserName','class'=>'form-control')); ?>
+						<?php echo $errors->first('username'); ?>
+					</div>
+				
+					<div class="form-group">
+						<?php echo Form::label('password', 'Password:'); ?>
+						<?php echo Form::password('password',array('placeholder'=>'password','class'=>'form-control')); ?>
+						<?php echo $errors->first('password'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('password_confirmation', 'Password confirmation:'); ?>
+						<?php echo Form::password('password_confirmation',array('placeholder'=>'password','class'=>'form-control')); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('first_name', 'First Name:'); ?>
+						<?php echo Form::text('first_name','',array('placeholder'=>'First Name','class'=>'form-control')); ?>
+						<?php echo $errors->first('first_name'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('last_name', 'last Name:'); ?>
+						<?php echo Form::text('last_name','',array('placeholder'=>'Last Name','class'=>'form-control')); ?>
+						<?php echo $errors->first('last_name'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('email', 'Email:'); ?>
+						<?php echo Form::text('email','',array('placeholder'=>'example@email.com','class'=>'form-control')); ?>
+						<?php echo $errors->first('email'); ?>
+					</div>
+
+					<div class="form-group">
+						<?php echo Form::label('phone_no', 'Phone:'); ?>
+						<?php echo Form::text('phone_no','',array('placeholder'=>'0803xxxxxxx','class'=>'form-control')); ?>
+						<?php echo $errors->first('phone_no'); ?>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3">
+						<?php echo Form::submit('Create',array('class'=>'btn btn-small btn-green')); ?>
+						</div>
+					</div>
+				<?php echo Form::close(); ?>
+			</div>
+		
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

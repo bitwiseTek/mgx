@@ -1,0 +1,8 @@
+<?php $__env->startSection('page_title'); ?>
+	404 - Page not Found
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+	<h4>Whoops! d page you dey find no dey, doh..</h4>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.error', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

@@ -1,0 +1,24 @@
+
+	<?php if(Session::get('account_type')=='user'): ?>
+	<div class="col-md-3">
+		<div class="list-group side_bar_menu hidden-sm hidden-xs">
+			<a class="list-group-item" href="/users/summary"><i class="icon-chat"></i>&nbsp; Summary</a>
+			<a class="list-group-item" href="/users/exchange-currencies"><i class="icon-star-1"></i>&nbsp; Exchange</a>
+			<a class="list-group-item" href="/users/transactions"><i class="icon-chat"></i>&nbsp; Transactions</a>
+			<a class="list-group-item" href="/users/settings"><i class="icon-cog-alt"></i>&nbsp; Settings</a>
+			<a class="list-group-item"  href="/log-out"><i class="icon-logout-1"></i>&nbsp; LogOut</a>
+		</div>
+	</div>
+	<?php else: ?>
+	<div class="col-md-3">
+		<div class="list-group side_bar_menu hidden-sm hidden-xs">
+			<a class="list-group-item"  href="/admin/summary"><i class="icon-layout"></i> &nbsp; Summary</a>
+			<a class="list-group-item"  href="/admin/transactions"><i class="icon-edit"></i> &nbsp; Transactions</a>
+			<a class="list-group-item"  href="/admin/users"><i class="icon-users-1"></i> &nbsp; Users</a>
+			<a class="list-group-item"  href="/admin/reports"><i class="icon-chart-bar-1"></i> &nbsp; Reports</a>
+			<a class="list-group-item"  href="/admin/configuration"><i class="icon-sitemap"></i> &nbsp;Configuration</a>
+			<a class="list-group-item"  href="/admin/settings"><i class="icon-cog-alt"></i> &nbsp; Settings</a>
+			<a class="list-group-item"  href="/log-out"><i class="icon-logout-1"></i> &nbsp; LogOut</a>
+		</div>
+	</div>
+	<?php endif; ?>

@@ -1,0 +1,243 @@
+<?php $__env->startSection('page_title'); ?>
+	Account settings
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>	
+	<div class="container main_content">
+		<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			<div class="col-md-9">
+				<div class="row">
+					<div class="col-md-8">
+						<?php if(Session::get('editInfo_message')): ?>
+							<div><?php echo Session::get('editInfo_message'); ?></div>
+						<?php endif; ?>
+						<h3>Personal Information</h3>
+						<hr class="divider"/>
+						<?php echo Form::open(array('url' => '/users/settings/info', 'method'=>'post','role'=>'form')); ?>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('last_name', 'LastName:'); ?>
+									<?php echo Form::text('last_name',$data['info']->last_name,array('placeholder'=>'Enter your Last Name','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('last_name'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('first_name', 'FirstName'); ?>
+									<?php echo Form::text('first_name',$data['info']->first_name,array('placeholder'=>'Enter your First Name','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('first_name'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('email', 'Email:'); ?>
+									<?php echo Form::text('email',$data['info']->email,array('class'=>'form-control input-lg','disabled'=>'disabled')); ?>
+									<?php echo $errors->first('email'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('phone_no', 'Phone'); ?>
+									<?php echo Form::text('phone_no',$data['info']->phone_no,array('placeholder'=>'Enter your mobile Number','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('phone_no'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Update',array('class'=>'btn btn-blue btn-block btn-small','name'=>'edit_info')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+
+				<br><br>
+
+				<div class="row">
+					<?php if(Session::get('editPassword_message')): ?>
+						<div><?php echo Session::get('editPassword_message'); ?></div>
+					<?php endif; ?>
+					<div class="col-md-8">
+						<h3>Password Settings</h3>
+						<hr class="divider"/>
+						<?php echo Form::open(array('url' => '/users/settings/password', 'method'=>'post','role'=>'form')); ?>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('old_password', 'Current Password:'); ?>
+									<?php echo Form::password('old_password','',array('placeholder'=>'Enter Current password','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('old_password'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('new_password', 'New Password:'); ?>
+									<?php echo Form::password('new_password','',array('placeholder'=>'Enter New Password','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('new_password'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Update',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+
+				<br><br>
+
+				<div class="row">
+					<?php if(Session::get('editBank_message')): ?>
+						<div><?php echo Session::get('editBank_message'); ?></div>
+					<?php endif; ?>
+					<div class="col-md-8">
+						<h3>Bank Settings</h3>
+						<hr class="divider"/>
+						<?php echo Form::open(array('url' => '/users/settings/bank-details', 'method'=>'post','role'=>'form')); ?>
+						
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Bank Name:</label>
+									<select class="form-control bank_names" name="bank_name"></select> 
+									<?php echo $errors->first('bank_name'); ?>	
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('bank_account', 'Bank Account:'); ?>
+									<?php echo Form::text('bank_account',$data['info']->bank_account,array('placeholder'=>'Specify Bank Account','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('bank_account'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Update',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+
+				<br><br>
+
+				<div class="row">
+					<?php if(Session::get('editEwallets_message')): ?>
+						<div><?php echo Session::get('editEwallets_message'); ?></div>
+					<?php endif; ?>
+					<div class="col-md-8">
+						<h3>eCurrency Settings</h3>
+						<hr class="divider"/>
+						<?php echo Form::open(array('url' => '/users/settings/e-wallets', 'method'=>'post','role'=>'form')); ?>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('perfectmoney', 'PerfectMoney:'); ?>
+									<?php echo Form::text('perfectmoney',$data['currencies']->perfectmoney,array('placeholder'=>'Enter Perfect Money currency','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('perfectmoney'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('perfectmoney_acct', 'PerfectMoney Account:'); ?>
+									<?php echo Form::text('perfectmoney_acct',$data['currencies']->perfectmoney_acct,array('placeholder'=>'Enter Perfect Money Acct','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('perfectmoney_acct'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('webmoney', 'WebMoney:'); ?>
+									<?php echo Form::text('webmoney',$data['currencies']->webmoney,array('placeholder'=>'Enter WebMoney','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('webmoney'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('webmoney_acct', 'WebMoney Account:'); ?>
+									<?php echo Form::text('webmoney_acct',$data['currencies']->webmoney_acct,array('placeholder'=>'Enter WebMoney Acct','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('webmoney_acct'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('egopay', 'EgoPay:'); ?>
+									<?php echo Form::text('egopay',$data['currencies']->egopay,array('placeholder'=>'Enter EgoPay','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('egopay'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('egopay_email', 'EgoPay Email:'); ?>
+									<?php echo Form::text('egopay_email',$data['currencies']->egopay_email,array('placeholder'=>'Enter EgoPay Email','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('egopay_email'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('payza', 'Payza:'); ?>
+									<?php echo Form::text('payza',$data['currencies']->payza,array('placeholder'=>'Enter Payza','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('payza'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('payza_email', 'Payza Email:'); ?>
+									<?php echo Form::text('payza_email',$data['currencies']->payza_email,array('placeholder'=>'Enter Payza Email','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('payza_email'); ?>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('solidtrust', 'SolidTrust:'); ?>
+									<?php echo Form::text('solidtrust',$data['currencies']->solidtrust,array('placeholder'=>'Enter SolidTrust','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('solidtrust'); ?>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<?php echo Form::label('solidtrust_email', 'SolidTrust Email:'); ?>
+									<?php echo Form::text('solidtrust_email',$data['currencies']->solidtrust_email,array('placeholder'=>'Enter SolidTrust Email','class'=>'form-control input-lg')); ?>
+									<?php echo $errors->first('solidtrust_email'); ?>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3">
+								<?php echo Form::submit('Update',array('class'=>'btn btn-blue btn-block btn-small')); ?>
+							</div>
+						</div>
+						<?php echo Form::close(); ?>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

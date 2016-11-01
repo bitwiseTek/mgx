@@ -1,0 +1,34 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : workChop Activation
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+		<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>workChop Activation</h5>
+			<hr class="colorgraph">
+			<?php if(!empty($ads)): ?>
+				<div>
+					<?php foreach($ads as $advert): ?>
+						<div class="allocate_slot_div">
+							<div id="ad_view_name">
+								<span class="business_list_user_header"><?php echo e($advert->biz_name); ?></span>
+								<a href="#" class="ad_slot_allocation active_ad_menu" ad_id="<?php echo $advert->id; ?>" user_id="<?php echo $advert->user_id; ?>" > - Subscribe</a>
+							</div><br>
+						</div>
+						<hr style="border-top:1px dashed #ccc">
+					<?php endforeach; ?>
+				</div>
+				<div class="subscribe_message"></div>
+			<?php else: ?>
+				<h3 >Notice</h3>
+				<div>This user has no inactive workChops</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

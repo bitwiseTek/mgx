@@ -1,0 +1,57 @@
+<?php $__env->startSection('page_title'); ?>
+	eDey : Users Staff Account
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('content'); ?>
+<?php echo $__env->make('templates.include_search', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<div class="container main_content">
+	<div class="row">
+			<?php echo $__env->make('templates.nestedMenu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+		<div class="col-md-9">
+			<h5>View Account</h5>
+			<hr class="colorgraph">
+			<?php if(!is_Null($user)): ?>
+			<div>
+				<h5>General Info </h5>
+				<div>
+					<div>
+						Fullname : <?php echo $user->first_name; ?> <?php echo $user->last_name; ?> (<?php echo $user->username; ?>)
+					</div>
+					<div>
+						Email : <?php echo $user->email; ?>
+					</div>
+					<div>
+						Phone : <?php echo $user->phone_no; ?>
+					</div>
+					<div>
+						Created : <?php echo date('d M Y',strtotime($user->created_at)); ?>
+					</div>
+					<div>
+						Role : <?php echo $user->account_role; ?>
+					</div>
+				</div>
+			</div>
+			<h5>Action</h5>
+			<div class="row">
+				<?php if($user->status==0): ?>
+				<div class="col-md-3">
+					<div user_id ="<?php echo $user->id; ?>" action="enable" class="btn btn-small btn-green accounts_action" >Enable Account</div>
+				</div>
+				<?php else: ?>
+				<div class="col-md-3">
+					<div user_id="<?php echo $user->id; ?>" action="disable" class="btn btn-small btn-red accounts_action" >Disable Account</div>
+				</div>
+				<?php endif; ?>
+				<div class="col-md-3">
+					<a class="btn btn-small btn-blue" href="/admin/logs/account/view/<?php echo $user->id; ?>">View Logs</a>
+				</div>
+			</div>
+			<?php else: ?>
+			<h3>Notice</h3>
+			<div>This user is not available</div>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('templates.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
